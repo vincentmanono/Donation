@@ -6,15 +6,23 @@
         <div class="container">
           <div class="row">
             <div class="col-md-6 text-md-left pl-0">
-              <a href="{{route('index')}}" class=" pr-3 pl-0">Home</a>
-              <a href="#" class="p-3">Events</a>
-              <a href="#" class="p-3">Become A Volunteer</a>
+              <a href="{{route('register')}}" class="p-3">Become A Donor</a>
             </div>
             <div class="col-md-6 text-md-right">
-              <a href="#" class="p-3"><span class="icon-twitter"></span></a>
-              <a href="#" class="p-3"><span class="icon-facebook"></span></a>
+                @if (Route::has('login'))
+                @auth
+                    <a href="{{ url('/home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a>
+                @else
+                    <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
+
+                    @if (Route::has('register'))
+                        <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
+                    @endif
+                @endauth
+
+        @endif
             </div>
-          </div>
+
         </div>
       </div>
       <header class="site-navbar site-navbar-target bg-secondary shadow" role="banner">
