@@ -19,12 +19,14 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // client pages
-Route::get('/',[PageController::class,'index'])->name('index');
+Route::get('/ind',[PageController::class,'index'])->name('index');
 Route::get('/about',[PageController::class,'about'])->name('about');
 Route::get('/contact',[PageController::class,'contact'])->name('contact');
 Route::get('/blog',[PageController::class,'blog'])->name('blog');
 Route::get('/services',[PageController::class,'services'])->name('services');
+
+
