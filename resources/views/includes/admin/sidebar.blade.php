@@ -7,7 +7,7 @@
             <ul id="sidebarnav">
                 <li class="user-pro">
                     <a class="has-arrow waves-effect waves-dark" href="#"
-                        aria-expanded="false"><img src="/images/users/1.jpg" alt="user-img" class="img-circle"><span
+                        aria-expanded="false"><img src="{{asset('/admin/assets/images/users/1.jpg')}}" alt="user-img" class="img-circle"><span
                             class="hide-menu">{{Auth::user()->name}}</span></a>
                     <ul aria-expanded="false" class="collapse">
                         <li><a href="#"><i class="ti-user"></i> My Profile</a></li>
