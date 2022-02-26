@@ -29,6 +29,7 @@ class ProductFactory extends Factory
             'location'=> $this->faker->city() ,
             'description'=>$this->faker->realText(),
             'transport' =>$this->faker->boolean(),
+            'status'=>$this->faker->boolean(),
             'user_id'=>function(){return User::all()->random() ;},
 
         ];

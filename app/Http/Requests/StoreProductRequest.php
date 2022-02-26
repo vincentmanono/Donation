@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class StoreProductRequest extends FormRequest
 {
@@ -13,7 +14,7 @@ class StoreProductRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return Auth::check();
     }
 
     /**
@@ -24,7 +25,16 @@ class StoreProductRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => ['required','string'],
+            'quantity' => ['required','string'],
+            'weight' => ['required','string'],
+            'type' => ['required','string'],
+            'durability' => ['required','string'],
+            'expiry_date' => ['required','string'],
+            'image' => ['required','string','image'],
+            'location' => ['required','string'],
+            'description' => ['required','string'],
+            'transport' => ['required','string'],
         ];
     }
 }
