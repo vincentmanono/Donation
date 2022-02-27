@@ -14,7 +14,7 @@
                                 <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
                                 <li class="breadcrumb-item active">Datatable</li>
                             </ol>
-                            <button type="button" class="btn btn-info d-none d-lg-block m-l-15"><i class="fa fa-plus-circle"></i> Create New</button>
+                            <a href="{{route('products.create')}}"class="btn btn-info d-none d-lg-block m-l-15"><i class="fa fa-plus-circle"></i> Create New</a>
                         </div>
                     </div>
                 </div>
@@ -28,7 +28,7 @@
                     <div class="col-12">
                         <div class="jumbotron jumbotron-fluid">
                             <h1 class="display-4 row "> <div class="col-md-6 col-xs-12" > {{$product->name}}</div> 
-                                <div class="col-md-6 col-xs-12" > <img src="{{ $product->image}}" alt="" sizes="60" width="260" height="200" ></div>  </h1>
+                                <div class="col-md-6 col-xs-12" > <img src="/storage/{{$product->image}}" alt="" sizes="60" width="260" height="200" ></div>  </h1>
                             <p class="lead">Donated by : {{ $product->donor->name }} </p>
                             <p class="lead">Status : {{ $product->status ? 'RECEIVED' : "PEDDING" }} </p>
                             <hr class="my-4">

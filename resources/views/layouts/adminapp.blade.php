@@ -29,6 +29,7 @@
 </head>
 
 <body class="skin-default fixed-layout">
+    @include('includes.messages')
     <!-- ============================================================== -->
     <!-- Preloader - style you can find in spinners.css -->
     <!-- ============================================================== -->

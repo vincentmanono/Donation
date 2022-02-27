@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Request;
 
 class ProductController extends Controller
 {
@@ -27,7 +29,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view("admin.products.create") ;
     }
 
     /**
@@ -38,7 +40,36 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-        //
+       $product =  $request->validated() ;
+       $product['user_id'] = Auth::user()->id ;
+
+       if (file_exists($request->file('image'))) {
+        // dd($request);
+         // Get filename with extension
+         $filenameWithExt = $request->file('image')->getClientOriginalName();
+
+         // Get just the filename
+         $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+
+         // Get extension
+         $extension = $request->file('image')->getClientOriginalExtension();
+
+         // Create new filename
+         $filenameToStore = $filename . '_' . time() . '.' . $extension;
+
+         // Uplaod image
+         
+         $path = $request->file('image')->storeAs('public/products', $filenameToStore);
+         $avatar  = $filenameToStore;
+        $product['image'] = $avatar ;
+
+     }
+       
+       Product::create($product) ;
+
+       return redirect()->route('products.index')->with('success',"product added");
+
+
     }
 
     /**
@@ -85,4 +116,30 @@ class ProductController extends Controller
     {
         //
     }
+
+    public function storeImage( $request,$product)
+    {
+        # code...
+        if (file_exists($request->file('image'))) {
+            // dd($request);
+             // Get filename with extension
+             $filenameWithExt = $request->file('image')->getClientOriginalName();
+
+             // Get just the filename
+             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+
+             // Get extension
+             $extension = $request->file('image')->getClientOriginalExtension();
+
+             // Create new filename
+             $filenameToStore = $filename . '_' . time() . '.' . $extension;
+
+             // Uplaod image
+             $path = $request->file('image')->storeAs('public/products', $filenameToStore);
+             $avatar  = $filenameToStore;
+            $product['image'] = $avatar ;
+         }
+    }
+
+
 }

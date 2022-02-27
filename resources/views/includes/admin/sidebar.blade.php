@@ -40,7 +40,7 @@
                 <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i
                             class="ti-layout-grid2"></i><span class="hide-menu">Products</span></a>
                     <ul aria-expanded="false" class="collapse">
-                        <li><a href="#">View Products</a></li>
+                        <li><a href="{{route('products.index')}}">View Products</a></li>
                     </ul>
                 </li>
                 <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i

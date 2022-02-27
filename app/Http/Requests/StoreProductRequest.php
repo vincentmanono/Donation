@@ -31,7 +31,7 @@ class StoreProductRequest extends FormRequest
             'type' => ['required','string'],
             'durability' => ['required','string'],
             'expiry_date' => ['required','string'],
-            'image' => ['required','string','image'],
+            'image' => ['required','image'],
             'location' => ['required','string'],
             'description' => ['required','string'],
             'transport' => ['required','string'],
