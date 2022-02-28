@@ -53,7 +53,7 @@
                <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i
                             class="ti-layout-accordion-merged"></i><span class="hide-menu">Donors</span></a>
                     <ul aria-expanded="false" class="collapse">
-                        <li><a href="#">View Donors</a></li>
+                        <li><a href="{{route('donors.index')}}">View Donors</a></li>
                         <li><a href="#">Add Donor</a></li>
                     </ul>
                 </li>
