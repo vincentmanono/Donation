@@ -16,9 +16,10 @@ class RequestDonationNotification extends Notification
      *
      * @return void
      */
-    public function __construct()
+    public $data ;
+    public function __construct($data)
     {
-        //
+        $this->data = $data;
     }
 
     /**
@@ -41,8 +42,9 @@ class RequestDonationNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
+                    ->subject($this->data['subject'])
+                    ->line($this->data['message'])
+                    ->action('Click here to donate', url('/'))
                     ->line('Thank you for using our application!');
     }
 

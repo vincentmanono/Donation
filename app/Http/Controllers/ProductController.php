@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use App\Notifications\RequestDonationNotification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Notification;
 
 class ProductController extends Controller
 {
@@ -205,11 +207,12 @@ class ProductController extends Controller
        
         try {
             //code...
-            mail($request->email,$request->subject,$request->message);
+            // mail($request->email,$request->subject,$request->message);
+            Notification::send(Auth::user(),new RequestDonationNotification($request->all())) ;
             Session::flash('success',"Request send.");
         } catch (\Throwable $th) {
-            //throw $th;
-            Session::flash('error',$th->getMessage());
+            throw $th;
+            // Session::flash('error',$th->getMessage());
 
         }
 
