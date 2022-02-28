@@ -90,11 +90,15 @@
                                         <form action="{{route('accept.product',$product)}}" method="post">
                                             @csrf
                                             <input type="hidden" name="status" value="rejected">
-                                            <button type="submit" class="btn btn-warning">Reject Product</button>
+                                            <button type="submit" class="btn btn-secondary">Reject Product</button>
                                         </form>
                                      </div>
-                                    <div class="col-md-2 m-2" > <a href="{{route('products.edit',$product)}}" class="btn btn-info"> Edit Products </a> </div>
-                                    <div class="col-md-2 m-2" > <a href="#" class="btn btn-danger"> Delete Products </a> </div>
+                                    <div class="col-md-2 m-2" > <a href="{{route('products.edit',$product)}}" > Edit Products </a> </div>
+                                    <form action="{{route('products.destroy',$product)}}" method="post">
+                                        @method("DELETE")
+                                        @csrf
+                                        <button type="submit" class="btn btn-danger">Delete Products</button>
+                                    </form> </div>
                                 </div>
                             </p>
                         </div>
