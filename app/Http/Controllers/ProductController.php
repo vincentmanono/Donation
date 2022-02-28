@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateProductRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class ProductController extends Controller
 {
@@ -181,6 +182,40 @@ class ProductController extends Controller
         
         Session::flash('success',"Product accepted.");
         return back();
+    }
+
+    public function acceptedProducts()
+    {
+        # code...
+        $products  = Product::where('status','accepted')->get() ;
+        return view('admin.collect.index',compact('products') ) ;
+    }
+
+    public function showRequestDonationView()
+    {
+        return view('admin.products.requestdonation') ;
+
+    }
+
+
+    public function requestDonation(Request $request)
+    {
+        # send email to request donation
+
+       
+        try {
+            //code...
+            mail($request->email,$request->subject,$request->message);
+            Session::flash('success',"Request send.");
+        } catch (\Throwable $th) {
+            //throw $th;
+            Session::flash('error',$th->getMessage());
+
+        }
+
+        
+        return back() ;
+
     }
 
 

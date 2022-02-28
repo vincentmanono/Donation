@@ -32,9 +32,9 @@
                             class="icon-speedometer"></i><span class="hide-menu">Donations<span
                                 class="badge badge-pill badge-cyan ml-auto"></span></span></a>
                     <ul aria-expanded="false" class="collapse">
-                        <li><a href="#">Donation Requests </a></li>
-                        <li><a href="#">Received Donations</a></li>
-                        <li><a href="#">Approved Donations</a></li>
+                        <li><a href="{{route('showRequestDonationView')}}">Donation Requests </a></li>
+                        <li><a href="{{route('acceptedProducts')}}">Received Donations</a></li>
+                        <li><a href="{{route('acceptedProducts')}}">Approved Donations</a></li>
                     </ul>
                 </li>
                 <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i
@@ -46,8 +46,7 @@
                 <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i
                             class="ti-email"></i><span class="hide-menu">Collections</span></a>
                     <ul aria-expanded="false" class="collapse">
-                        <li><a href="app-email.html">View Collections</a></li>
-                        <li><a href="app-email-detail.html">Add Collection Detail</a></li>
+                        <li><a href="{{route('acceptedProducts')}}">View Collections</a></li>
                     </ul>
                 </li>
                <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i
