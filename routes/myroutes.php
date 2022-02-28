@@ -6,3 +6,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::resource('companies', CompanyController::class);
 Route::resource('products', ProductController::class);
+ROute::post('accept/products',[ProductController::class,'acceptProduct'])->name('accept.product') ;

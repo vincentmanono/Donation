@@ -7,6 +7,7 @@ use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Session;
 
 class ProductController extends Controller
 {
@@ -139,6 +140,17 @@ class ProductController extends Controller
              $avatar  = $filenameToStore;
             $product['image'] = $avatar ;
          }
+    }
+
+    public function acceptProduct(Product $product)
+    {
+        # Accept product donated
+        $product->update([
+            'status' => true
+        ]);
+        
+        Session::flash('success',"Product accepted.");
+        return back();
     }
 
 

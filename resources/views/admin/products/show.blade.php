@@ -76,8 +76,19 @@
                                         </tbody>
                                 </table>
                                 <div class="row" >
-                                    <div class="col-md-2 m-2" > <a href="#" class="btn btn-success"> Accept Products </a> </div>
-                                    <div class="col-md-2 m-2" > <a href="#" class="btn btn-warning"> Reject Products </a> </div>
+                                    <div class="col-md-2 m-2" > 
+
+                                        <form action="{{route('accept.product',$product)}}" method="post">
+                                            <button type="submit" class="btn btn-success">Accept Product</button>
+                                        </form>
+                                    
+                                    </div>
+                                    <div class="col-md-2 m-2" >
+
+                                        <form action="{{route('accept.product',$product)}}" method="post">
+                                            <button type="submit" class="btn btn-warning">Reject Product</button>
+                                        </form>
+                                     </div>
                                     <div class="col-md-2 m-2" > <a href="#" class="btn btn-info"> Edit Products </a> </div>
                                     <div class="col-md-2 m-2" > <a href="#" class="btn btn-danger"> Delete Products </a> </div>
                                 </div>
