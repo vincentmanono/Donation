@@ -30,7 +30,7 @@
                             <h1 class="display-4 row "> <div class="col-md-6 col-xs-12" > {{$product->name}}</div> 
                                 <div class="col-md-6 col-xs-12" > <img src="/storage/{{$product->image}}" alt="" sizes="60" width="260" height="200" ></div>  </h1>
                             <p class="lead">Donated by : {{ $product->donor->name }} </p>
-                            <p class="lead">Status : {{ $product->status ? 'RECEIVED' : "PEDDING" }} </p>
+                            <p class="lead">Status : <span class="text-capitalize" >{{ $product->status  }}  </span> </p>
                             <hr class="my-4">
                             <p>
                                 <table class="table table-striped table-inverse table-responsive">
@@ -79,6 +79,8 @@
                                     <div class="col-md-2 m-2" > 
 
                                         <form action="{{route('accept.product',$product)}}" method="post">
+                                            @csrf
+                                            <input type="hidden" name="status" value="accepted">
                                             <button type="submit" class="btn btn-success">Accept Product</button>
                                         </form>
                                     
@@ -86,10 +88,12 @@
                                     <div class="col-md-2 m-2" >
 
                                         <form action="{{route('accept.product',$product)}}" method="post">
+                                            @csrf
+                                            <input type="hidden" name="status" value="rejected">
                                             <button type="submit" class="btn btn-warning">Reject Product</button>
                                         </form>
                                      </div>
-                                    <div class="col-md-2 m-2" > <a href="#" class="btn btn-info"> Edit Products </a> </div>
+                                    <div class="col-md-2 m-2" > <a href="{{route('products.edit',$product)}}" class="btn btn-info"> Edit Products </a> </div>
                                     <div class="col-md-2 m-2" > <a href="#" class="btn btn-danger"> Delete Products </a> </div>
                                 </div>
                             </p>
