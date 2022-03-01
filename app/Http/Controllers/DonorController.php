@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Donor;
+use App\Models\Product;
 use App\Http\Requests\StoreDonorRequest;
 use App\Http\Requests\UpdateDonorRequest;
 
@@ -47,9 +48,11 @@ class DonorController extends Controller
      * @param  \App\Models\Donor  $donor
      * @return \Illuminate\Http\Response
      */
-    public function show(Donor $donor)
+    public function show(Donor $donor,$id)
     {
-        return view('admin.donors.show',compact('donor'));
+        $donor  = User::find($id);
+        $products = Product::all();
+        return view('admin.donors.show',compact('donor','products'));
     }
 
     /**

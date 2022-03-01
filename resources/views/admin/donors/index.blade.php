@@ -57,7 +57,7 @@
                                     <td>
                                         <div class="row">
                                             <div>
-                                            <a href="{{route('donors.show',$donor)}}"> <i class="fa fa-eye" aria-hidden="true">View</i> </a>
+                                            <a href="{{route('donors.show',$donor->id)}}"> <i class="fa fa-eye" aria-hidden="true">View</i> </a>
                                                      </td>
                                         </div>
                                         </div>

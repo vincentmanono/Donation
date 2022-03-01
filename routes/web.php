@@ -18,7 +18,9 @@ use App\Http\Controllers\DonorController;
 include_once('myroutes.php') ;
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::resource('donors', DonorController::class);
+// Route::resource('donors', DonorController::class);
+Route::get('/donors',[DonorController::class,'index'])->name('donors.index');
+Route::get('/donor/{id}',[DonorController::class,'show'])->name('donors.show');
 
 
 // client pages
