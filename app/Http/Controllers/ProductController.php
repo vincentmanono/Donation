@@ -5,8 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use App\Notifications\RequestDonationNotification;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Notification;
 
 class ProductController extends Controller
 {
@@ -91,7 +95,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        return view('admin.products.edit',compact('product'));
     }
 
     /**
@@ -103,7 +107,34 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, Product $product)
     {
-        //
+        $data =  $request->validated() ;
+ 
+        if (file_exists($request->file('image'))) {
+         // dd($request);
+          // Get filename with extension
+          $filenameWithExt = $request->file('image')->getClientOriginalName();
+ 
+          // Get just the filename
+          $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+ 
+          // Get extension
+          $extension = $request->file('image')->getClientOriginalExtension();
+ 
+          // Create new filename
+          $filenameToStore = $filename . '_' . time() . '.' . $extension;
+ 
+          // Uplaod image
+          
+          $path = $request->file('image')->storeAs('public/products', $filenameToStore);
+          $avatar  = $filenameToStore;
+         $data['image'] = $avatar ;
+ 
+      }
+        
+        $product->update($data) ;
+
+        return back()->with('success','product updated') ;
+        
     }
 
     /**
@@ -114,7 +145,9 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
+        return redirect()->route('products.index') ->with('success','product deleted') ;
+
     }
 
     public function storeImage( $request,$product)
@@ -139,6 +172,53 @@ class ProductController extends Controller
              $avatar  = $filenameToStore;
             $product['image'] = $avatar ;
          }
+    }
+
+    public function acceptProduct(Product $product, Request $request)
+    {
+        
+        # Accept product donated
+        $product->update([
+            'status' => trim( $request->status)
+        ]);
+        
+        Session::flash('success',"Product accepted.");
+        return back();
+    }
+
+    public function acceptedProducts()
+    {
+        # code...
+        $products  = Product::where('status','accepted')->get() ;
+        return view('admin.collect.index',compact('products') ) ;
+    }
+
+    public function showRequestDonationView()
+    {
+        return view('admin.products.requestdonation') ;
+
+    }
+
+
+    public function requestDonation(Request $request)
+    {
+        # send email to request donation
+
+       
+        try {
+            //code...
+            // mail($request->email,$request->subject,$request->message);
+            Notification::send(Auth::user(),new RequestDonationNotification($request->all())) ;
+            Session::flash('success',"Request send.");
+        } catch (\Throwable $th) {
+            throw $th;
+            // Session::flash('error',$th->getMessage());
+
+        }
+
+        
+        return back() ;
+
     }
 
 

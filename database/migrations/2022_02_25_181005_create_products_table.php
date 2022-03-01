@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string("image")->nullable(); //product img
             $table->string("location")->nullable(); //picking point of the product
             $table->longText("description")->nullable() ;
-            $table->boolean('status') ; // completely received or yet to be received
+            $table->enum('status',['pedding','accepted','rejected'])->default('pedding');
             $table->boolean("transport")->nullable() ; //(willing to transport or red cross to pick)
             $table->foreignIdFor(User::class,'user_id') ;
 

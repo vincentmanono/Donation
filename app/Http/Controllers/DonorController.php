@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Models\Donor;
-use App\Models\Product;
 use App\Http\Requests\StoreDonorRequest;
 use App\Http\Requests\UpdateDonorRequest;
 
@@ -48,7 +46,7 @@ class DonorController extends Controller
      * @param  \App\Models\Donor  $donor
      * @return \Illuminate\Http\Response
      */
-    public function show(Donor $donor,$id)
+    public function show(User $donor)
     {
         $donor  = User::find($id);
         $products = Product::all();
@@ -61,7 +59,7 @@ class DonorController extends Controller
      * @param  \App\Models\Donor  $donor
      * @return \Illuminate\Http\Response
      */
-    public function edit(Donor $donor)
+    public function edit(User $donor)
     {
         //
     }
@@ -73,7 +71,7 @@ class DonorController extends Controller
      * @param  \App\Models\Donor  $donor
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateDonorRequest $request, Donor $donor)
+    public function update(UpdateDonorRequest $request, User $donor)
     {
         //
     }
@@ -84,7 +82,7 @@ class DonorController extends Controller
      * @param  \App\Models\Donor  $donor
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Donor $donor)
+    public function destroy(User $donor)
     {
         //
     }

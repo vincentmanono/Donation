@@ -82,11 +82,17 @@
                                                     @endif
                                                      </td>
                                                 <td> 
-                                                    @if ($product->status)
+                                                    @switch($product->status)
+                                                        @case('accepted')
                                                         <span class="badge badge-pill badge-success">Received</span>
-                                                    @else
+                                                            @break
+                                                        @case('rejected')
+                                                        <span class="badge badge-pill badge-danger">Rejected</span>
+                                                            @break
+                                                        @default
                                                         <span class="badge badge-pill badge-secondary">Pedding</span>
-                                                    @endif
+                                                    @endswitch
+                                                    
                                                      </td>
                                                     
                                                 <td> 
