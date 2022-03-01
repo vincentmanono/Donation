@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
     public function index(){
-        return view('client.index');
+
+        $products=Product::latest()->paginate(3);
+        return view('client.index',compact('products'));
     }
     public function blog(){
         return view('client.blog');

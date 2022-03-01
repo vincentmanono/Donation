@@ -14,17 +14,9 @@
                     <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
                     <li class="breadcrumb-item active">Donors</li>
                 </ol>
-                <a href="{{route('register')}}" class="btn btn-info d-none d-lg-block m-l-15"><i
-                        class="fa fa-plus-circle"></i> Create New</a>
-
             </div>
         </div>
     </div>
-    <!-- ============================================================== -->
-    <!-- End Bread crumb and right sidebar toggle -->
-    <!-- ============================================================== -->
-    <!-- ============================================================== -->
-    <!-- Start Page Content -->
     <!-- ============================================================== -->
     <div class="row">
         <div class="col-12">
@@ -57,26 +49,27 @@
                                     <td>
                                         <div class="row">
                                             <div>
-                                            <a href="{{route('donors.show',$donor->id)}}"> <i class="fa fa-eye" aria-hidden="true">View</i> </a>
-                                                     </td>
-                                        </div>
-                                        </div>
-
-
+                                                <a href="{{route('donors.show',$donor->id)}}"> <i class="fa fa-eye"
+                                                        aria-hidden="true">View</i> </a>
                                     </td>
-
-                                </tr>
-
-                                @endforeach
-
-
-                            </tbody>
-                        </table>
                     </div>
                 </div>
+
+
+                </td>
+
+                </tr>
+
+                @endforeach
+
+
+                </tbody>
+                </table>
             </div>
         </div>
     </div>
+</div>
+</div>
 </div>
 
 @endsection

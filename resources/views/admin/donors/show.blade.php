@@ -15,17 +15,10 @@
                     <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
                     <li class="breadcrumb-item active">Profile</li>
                 </ol>
-                <button type="button" class="btn btn-info d-none d-lg-block m-l-15"><i class="fa fa-plus-circle"></i>
-                    Create New</button>
+
             </div>
         </div>
     </div>
-    <!-- ============================================================== -->
-    <!-- End Bread crumb and right sidebar toggle -->
-    <!-- ============================================================== -->
-    <!-- ============================================================== -->
-    <!-- Start Page Content -->
-    <!-- ============================================================== -->
     <!-- Row -->
     <div class="row">
         <!-- Column -->
@@ -75,25 +68,22 @@
             @if ($product->user_id == $donor->id)
 
             <div class="sl-item">
-                <div class="sl-left"> <img src="../assets/images/users/2.jpg" alt="user"
+                <div class="sl-left"> <img src="/storage/{{$product->image}}" alt="{{$product->name}}"
                         class="img-circle" /> </div>
                 <div class="sl-right">
                     <div> <a href="javascript:void(0)" class="link">{{$product->name}}</a> <span
-                            class="sl-date">5 minutes ago</span>
+                            class="sl-date">{{$product->created_at}}</span>
                         <div class="m-t-20 row">
-                            <div class="col-md-3 col-xs-12"><img src="../assets/images/big/img1.jpg"
-                                    alt="user" class="img-responsive radius" /></div>
+                            <div class="col-md-3 col-xs-12"><img src="/storage/{{$product->image}}" alt="{{$product->name}}" class="img-responsive radius" /></div>
                             <div class="col-md-9 col-xs-12">
-                                <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
-                                    nec odio. Praesent libero. Sed cursus ante dapibus diam. </p> <a
-                                    href="javascript:void(0)" class="btn btn-success"> Design
-                                    weblayout</a>
+                                <p>{{$product->description}} </p> <a
+                                    href="javascript:void(0)" class="btn btn-success"> {{$product->status}}</a>
                             </div>
                         </div>
                         <div class="like-comm m-t-20"> <a href="javascript:void(0)"
-                                class="link m-r-10">2 comment</a> <a href="javascript:void(0)"
-                                class="link m-r-10"><i class="fa fa-heart text-danger"></i> 5
-                                Love</a> </div>
+                                class="link m-r-10">{{$product->quantity}} quantity</a> <a href="javascript:void(0)"
+                                class="link m-r-10"><i class=" text-danger"></i> {{$product->weight}}
+                                weight</a> </div>
                     </div>
                 </div>
             </div>
