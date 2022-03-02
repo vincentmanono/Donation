@@ -27,8 +27,10 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="jumbotron jumbotron-fluid">
-                            <h1 class="display-4 row "> <div class="col-md-6 col-xs-12" > {{$product->name}}</div> 
-                                <div class="col-md-6 col-xs-12" > <img src="/storage/{{$product->image}}" alt="" sizes="60" width="260" height="200" ></div>  </h1>
+                            <h1 class="display-4 row "> <div class="col-md-6 col-xs-12" > {{$product->name}}</div>
+                                <div class="col-md-6 col-xs-12" >
+                            <img src="/storage/products/{{$product->image}}" width="460"
+                             height="200" ></div>  </h1>
                             <p class="lead">Donated by : {{ $product->donor->name }} </p>
                             <p class="lead">Status : <span class="text-capitalize" >{{ $product->status  }}  </span> </p>
                             <hr class="my-4">
@@ -66,17 +68,17 @@
                                                 <td>{{$product->expiry_date ?? "N/A"}}</td>
                                                 <td>{{$product->transport ? "Doner Will Transport" : "We Need To Pick" }}</td>
                                                 <td>{{$product->location}}</td>
-                                             
+
                                             </tr>
                                             <tr>
                                                 <td colspan="7" scope="row"> {{ $product->description }} </td>
-                                                
+
                                             </tr>
-                                           
+
                                         </tbody>
                                 </table>
                                 <div class="row" >
-                                    <div class="col-md-2 m-2" > 
+                                    <div class="col-md-2 m-2" >
                                         @if (Auth::user()->is_admin)
 
                                         <form action="{{route('accept.product',$product)}}" method="post">
@@ -84,7 +86,7 @@
                                             <input type="hidden" name="status" value="accepted">
                                             <button type="submit" class="btn btn-success">Accept Product</button>
                                         </form>
-                                    
+
                                     </div>
                                     <div class="col-md-2 m-2" >
 
@@ -94,22 +96,22 @@
                                             <button type="submit" class="btn btn-secondary">Reject Product</button>
                                         </form>
                                      </div>
-                                            
+
                                         @endif
 
                                         @if ($product->status == 'pedding' || $product->status == 'rejected' || Auth::user()->isAdmin()  )
 
-                                        <div class="col-md-2 m-2" > <a href="{{route('products.edit',$product)}}" > Edit Products </a> </div>
+                                        <div class="col-md-2 m-2" > <a href="{{route('products.edit',$product)}}" class="btn waves-effect waves-light btn-warning" > Edit Products </a> </div>
                                         <form action="{{route('products.destroy',$product)}}" method="post">
                                             @method("DELETE")
                                             @csrf
                                             <button type="submit" class="btn btn-danger">Delete Products</button>
-                                        </form> 
-                                            
+                                        </form>
+
                                         @endif
 
-                                        
-                                   
+
+
                                 </div>
                                 </div>
                             </p>
@@ -123,10 +125,10 @@
                 <!-- Right sidebar -->
                 <!-- ============================================================== -->
                 <!-- .right-sidebar -->
-               
+
                 <!-- ============================================================== -->
                 <!-- End Right sidebar -->
                 <!-- ============================================================== -->
             </div>
-    
+
 @endsection

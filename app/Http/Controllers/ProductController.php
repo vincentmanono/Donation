@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Str ;
 
 class ProductController extends Controller
 {
@@ -30,9 +31,9 @@ class ProductController extends Controller
             # code...
             $products =   Auth::user()->products ;
         }
-        
-        
-        return view('admin.products.index',compact('products')) ; 
+
+
+        return view('admin.products.index',compact('products')) ;
     }
 
     /**
@@ -61,23 +62,22 @@ class ProductController extends Controller
          // Get filename with extension
          $filenameWithExt = $request->file('image')->getClientOriginalName();
 
-         // Get just the filename
-         $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+
 
          // Get extension
          $extension = $request->file('image')->getClientOriginalExtension();
 
          // Create new filename
-         $filenameToStore = $filename . '_' . time() . '.' . $extension;
+         $filenameToStore = (string) Str::uuid() . '_' . time() . '.' . $extension;
 
          // Uplaod image
-         
+
          $path = $request->file('image')->storeAs('public/products', $filenameToStore);
          $avatar  = $filenameToStore;
         $product['image'] = $avatar ;
 
      }
-       
+
        Product::create($product) ;
 
        return redirect()->route('products.index')->with('success',"product added");
@@ -120,33 +120,33 @@ class ProductController extends Controller
     {
         $this->isAllowedToPerform($product);
         $data =  $request->validated() ;
- 
+
         if (file_exists($request->file('image'))) {
          // dd($request);
           // Get filename with extension
           $filenameWithExt = $request->file('image')->getClientOriginalName();
- 
+
           // Get just the filename
           $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
- 
+
           // Get extension
           $extension = $request->file('image')->getClientOriginalExtension();
- 
+
           // Create new filename
           $filenameToStore = $filename . '_' . time() . '.' . $extension;
- 
+
           // Uplaod image
-          
+
           $path = $request->file('image')->storeAs('public/products', $filenameToStore);
           $avatar  = $filenameToStore;
          $data['image'] = $avatar ;
- 
+
       }
-        
+
         $product->update($data) ;
 
         return back()->with('success','product updated') ;
-        
+
     }
 
     /**
@@ -189,12 +189,12 @@ class ProductController extends Controller
 
     public function acceptProduct(Product $product, Request $request)
     {
-        
+
         # Accept product donated
         $product->update([
             'status' => trim( $request->status)
         ]);
-        
+
         Session::flash('success',"Product accepted.");
         return back();
     }
@@ -202,7 +202,7 @@ class ProductController extends Controller
     public function acceptedProducts()
     {
         # code...
-        
+
         if ( Auth::user()->is_admin ) {
             # code...
             $products  = Product::where('status','accepted')->get() ;
@@ -210,7 +210,7 @@ class ProductController extends Controller
             # code...
             $products  = Auth::user()->products ;
         }
-        
+
         return view('admin.collect.index',compact('products') ) ;
     }
 
@@ -231,7 +231,7 @@ class ProductController extends Controller
     {
         # send email to request donation
 
-       
+
         try {
             //code...
             // mail($request->email,$request->subject,$request->message);
@@ -243,7 +243,7 @@ class ProductController extends Controller
 
         }
 
-        
+
         return back() ;
 
     }
