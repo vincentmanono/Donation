@@ -15,10 +15,9 @@
                     <div class="d-flex justify-content-end align-items-center">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                            <li class="breadcrumb-item active">Dashboard 1</li>
+                            <li class="breadcrumb-item active">Dashboard</li>
                         </ol>
-                        <button type="button" class="btn btn-info d-none d-lg-block m-l-15"><i
-                                class="fa fa-plus-circle"></i> Create New</button>
+                       
                     </div>
                 </div>
             </div>
@@ -39,7 +38,7 @@
                                         <p class="text-muted">DONORS </p>
                                     </div>
                                     <div class="ml-auto">
-                                        <h2 class="counter text-primary">23</h2>
+                                        <h2 class="counter text-primary">{{$donorsCount}}</h2>
                                     </div>
                                 </div>
                             </div>
@@ -65,7 +64,7 @@
                                         <p class="text-muted">NEW DONATIONS</p>
                                     </div>
                                     <div class="ml-auto">
-                                        <h2 class="counter text-cyan">169</h2>
+                                        <h2 class="counter text-cyan">{{$newDonation}}</h2>
                                     </div>
                                 </div>
                             </div>
@@ -141,24 +140,28 @@
                 <div class="col-lg-6">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Recent Comments</h5>
+                            <h5 class="card-title">Recent Donors</h5>
                         </div>
                         <!-- ============================================================== -->
                         <!-- Comment widgets -->
                         <!-- ============================================================== -->
                         <div class="comment-widgets">
                             <!-- Comment Row -->
+                            @foreach ($latestDonors as $user)
+
                             <div class="d-flex no-block comment-row">
                                 <div class="p-2"><span class="round"><img src="{{asset('admin/assets/images/users/1.jpg')}}" alt="user"
                                             width="50"></span></div>
                                 <div class="comment-text w-100">
-                                    <h5 class="font-medium">James Anderson</h5>
-                                    <p class="m-b-10 text-muted">Lorem Ipsum is simply dummy text of the printing and
-                                        type setting industry. Lorem Ipsum has beenorem Ipsum is simply dummy text of
-                                        the printing and type setting industry.</p>
+                                    <h5 class="font-medium"> {{$user->name}} <span class="text text-primary pl-4" >{{ $user->email}} </span> </h5>
+                                    <p class="m-b-10 text-muted">
+                                        <ul class="list-group">
+                                            <li class="list-group-item ">Donations : {{$user->products->count()}}</li>
+                                        </ul>
+                                    </p>
                                     <div class="comment-footer">
-                                        <span class="text-muted pull-right">April 14, 2016</span> <span
-                                            class="badge badge-pill badge-info">Pending</span> <span
+                                        <span class="text-muted pull-right">Member since {{$user->created_at->format("m - d, Y") }} </span>
+                                          <span
                                             class="action-icons">
                                             <a href="javascript:void(0)"><i class="ti-pencil-alt"></i></a>
                                             <a href="javascript:void(0)"><i class="ti-check"></i></a>
@@ -167,66 +170,10 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- Comment Row -->
-                            <div class="d-flex no-block comment-row border-top">
-                                <div class="p-2"><span class="round"><img src="/images/users/2.jpg" alt="user"
-                                            width="50"></span></div>
-                                <div class="comment-text active w-100">
-                                    <h5 class="font-medium">Michael Jorden</h5>
-                                    <p class="m-b-10 text-muted">Lorem Ipsum is simply dummy text of the printing and
-                                        type setting industry. Lorem Ipsum has beenorem Ipsum is simply dummy text of
-                                        the printing and type setting industry..</p>
-                                    <div class="comment-footer">
-                                        <span class="text-muted pull-right">April 14, 2016</span>
-                                        <span class="badge badge-pill badge-success">Approved</span>
-                                        <span class="action-icons active">
-                                            <a href="javascript:void(0)"><i class="ti-pencil-alt"></i></a>
-                                            <a href="javascript:void(0)"><i class="icon-close"></i></a>
-                                            <a href="javascript:void(0)"><i class="ti-heart text-danger"></i></a>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Comment Row -->
-                            <div class="d-flex no-block comment-row border-top">
-                                <div class="p-2"><span class="round"><img src="/images/users/3.jpg" alt="user"
-                                            width="50"></span></div>
-                                <div class="comment-text w-100">
-                                    <h5 class="font-medium">Johnathan Doeting</h5>
-                                    <p class="m-b-10 text-muted">Lorem Ipsum is simply dummy text of the printing and
-                                        type setting industry. Lorem Ipsum has beenorem Ipsum is simply dummy text of
-                                        the printing and type setting industry.</p>
-                                    <div class="comment-footer">
-                                        <span class="text-muted pull-right">April 14, 2016</span>
-                                        <span class="badge badge-pill badge-danger">Rejected</span>
-                                        <span class="action-icons">
-                                            <a href="javascript:void(0)"><i class="ti-pencil-alt"></i></a>
-                                            <a href="javascript:void(0)"><i class="ti-check"></i></a>
-                                            <a href="javascript:void(0)"><i class="ti-heart"></i></a>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Comment Row -->
-                            <div class="d-flex no-block comment-row border-top">
-                                <div class="p-2"><span class="round"><img src="/images/users/4.jpg" alt="user"
-                                            width="50"></span></div>
-                                <div class="comment-text active w-100">
-                                    <h5 class="font-medium">Genelia doe</h5>
-                                    <p class="m-b-10 text-muted">Lorem Ipsum is simply dummy text of the printing and
-                                        type setting industry. Lorem Ipsum has beenorem Ipsum is simply dummy text of
-                                        the printing and type setting industry..</p>
-                                    <div class="comment-footer">
-                                        <span class="text-muted pull-right">April 14, 2016</span>
-                                        <span class="badge badge-pill badge-success">Approved</span>
-                                        <span class="action-icons active">
-                                            <a href="javascript:void(0)"><i class="ti-pencil-alt"></i></a>
-                                            <a href="javascript:void(0)"><i class="icon-close"></i></a>
-                                            <a href="javascript:void(0)"><i class="ti-heart text-danger"></i></a>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
+
+                                
+                            @endforeach
+                            
                         </div>
                     </div>
                 </div>
@@ -238,8 +185,8 @@
                         <div class="card-body">
                             <div class="d-flex">
                                 <div>
-                                    <h5 class="card-title">Sales Overview</h5>
-                                    <h6 class="card-subtitle">Check the monthly sales </h6>
+                                    <h5 class="card-title">Donated Products Overview</h5>
+                                    <h6 class="card-subtitle">Check the monthly donation </h6>
                                 </div>
                                 <div class="ml-auto">
                                     <select class="custom-select b-0">
@@ -254,11 +201,11 @@
                         <div class="card-body bg-light">
                             <div class="row">
                                 <div class="col-6">
-                                    <h3>March 2017</h3>
+                                    <h3>March {{date("Y")}}</h3>
                                     <h5 class="font-light m-t-0">Report for this month</h5>
                                 </div>
                                 <div class="col-6 align-self-center display-6 text-right">
-                                    <h2 class="text-success">$3,690</h2>
+                                    <h2 class="text-success"></h2>
                                 </div>
                             </div>
                         </div>
@@ -270,66 +217,35 @@
                                         <th>NAME</th>
                                         <th>STATUS</th>
                                         <th>DATE</th>
-                                        <th>PRICE</th>
+                                        <th>View</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach ($products as $key=> $product)
                                     <tr>
-                                        <td class="text-center">1</td>
-                                        <td class="txt-oflo">Elite admin</td>
-                                        <td><span class="badge badge-success badge-pill">sale</span> </td>
-                                        <td class="txt-oflo">April 18, 2017</td>
-                                        <td><span class="text-success">$24</span></td>
+                                        <td class="text-center">{{$key++}}</td>
+                                        <td class="txt-oflo"> {{$product->name}} </td>
+                                        <td>
+
+                                            @switch($product->status)
+                                            @case('accepted')
+                                            <span class="badge badge-pill badge-success">Received</span>
+                                                @break
+                                            @case('rejected')
+                                            <span class="badge badge-pill badge-danger">Rejected</span>
+                                                @break
+                                            @default
+                                            <span class="badge badge-pill badge-secondary">Pedding</span>
+                                        @endswitch
+                                        
+                                        </td>
+                                        <td class="txt-oflo">April 18, 2017 {{{ $product->created_at->format("m d, Y")}}} </td>
+                                        <td><a href="{{route('products.show',$product)}}"> <i class="fa fa-eye" aria-hidden="true"></i> </a></td>
                                     </tr>
-                                    <tr>
-                                        <td class="text-center">2</td>
-                                        <td class="txt-oflo">Real Homes WP Theme</td>
-                                        <td><span class="badge badge-info badge-pill">extended</span></td>
-                                        <td class="txt-oflo">April 19, 2017</td>
-                                        <td><span class="text-info">$1250</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">3</td>
-                                        <td class="txt-oflo">Ample Admin</td>
-                                        <td><span class="badge badge-info badge-pill">extended</span></td>
-                                        <td class="txt-oflo">April 19, 2017</td>
-                                        <td><span class="text-info">$1250</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">4</td>
-                                        <td class="txt-oflo">Medical Pro WP Theme</td>
-                                        <td><span class="badge badge-danger badge-pill">tax</span></td>
-                                        <td class="txt-oflo">April 20, 2017</td>
-                                        <td><span class="text-danger">-$24</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">5</td>
-                                        <td class="txt-oflo">Hosting press html</td>
-                                        <td><span class="badge badge-success badge-pill">sale</span></td>
-                                        <td class="txt-oflo">April 21, 2017</td>
-                                        <td><span class="text-success">$24</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">6</td>
-                                        <td class="txt-oflo">Digital Agency PSD</td>
-                                        <td><span class="badge badge-success badge-pill">sale</span> </td>
-                                        <td class="txt-oflo">April 23, 2017</td>
-                                        <td><span class="text-danger">-$14</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">7</td>
-                                        <td class="txt-oflo">Helping Hands WP Theme</td>
-                                        <td><span class="badge badge-warning badge-pill">member</span></td>
-                                        <td class="txt-oflo">April 22, 2017</td>
-                                        <td><span class="text-success">$64</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">8</td>
-                                        <td class="txt-oflo">Ample Admin</td>
-                                        <td><span class="badge badge-info badge-pill">extended</span></td>
-                                        <td class="txt-oflo">April 19, 2017</td>
-                                        <td><span class="text-info">$1250</span></td>
-                                    </tr>
+                                        
+                                    @endforeach
+                                    
+                                  
                                 </tbody>
                             </table>
                         </div>

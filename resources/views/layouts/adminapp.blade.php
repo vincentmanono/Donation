@@ -68,7 +68,7 @@
     <!-- footer -->
     <!-- ============================================================== -->
     <footer class="footer">
-        © 2018 Eliteadmin by themedesigner.in
+        © {{date("Y") . " - " . Config::get('app.name', 'Donation'); }}
     </footer>
     <!-- ============================================================== -->
     <!-- End footer -->
