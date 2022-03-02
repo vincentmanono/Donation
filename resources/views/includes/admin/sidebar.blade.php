@@ -44,7 +44,12 @@
                            aria-expanded="false">
 
                            <i class="fa fa-hand-o-down" aria-hidden="true"></i>
+                           @if (Auth::user()->is_admin)
                            <span class="hide-menu">Donation Request</span></a></li>
+                           @else
+                           <span class="hide-menu">Email Admins</span></a></li>
+                           @endif
+                           
 
                    <li> <a class="waves-effect waves-dark" href="{{ route('acceptedProducts') }}"
                            aria-expanded="false">

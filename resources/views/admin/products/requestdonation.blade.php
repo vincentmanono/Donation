@@ -6,7 +6,7 @@
                 <!-- ============================================================== -->
                 <div class="row page-titles">
                     <div class="col-md-5 align-self-center">
-                        <h4 class="text-themecolor">Datatable</h4>
+                        <h4 class="text-themecolor">{{ Auth::user()->is_admin ? "Send Donation request" : " Email Admin"  }}</h4>
                     </div>
                     <div class="col-md-7 align-self-center text-right">
                         <div class="d-flex justify-content-end align-items-center">
@@ -32,7 +32,14 @@
                             <label for="email" class=" col-form-label text-md-end">{{ __('Receiver Email Address') }}</label>
 
                             <div class="col-md-6">
+                                @if (Auth::user()->is_admin)
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+
+                                @else
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" disabled value="{{ $admin->email }}" required autocomplete="email">
+
+                                @endif
+
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -70,7 +77,7 @@
                             </div>
                         </div>
 
-                        <button type="submit" class="btn btn-primary">Send request</button>
+                        <button type="submit" class="btn btn-primary"> {{ Auth::user()->is_admin ? "Send request" : "Send Email"  }} </button>
 
 
                     

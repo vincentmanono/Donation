@@ -10,5 +10,5 @@ Route::resource('products', ProductController::class);
 // Route::resource('collections', DonorController::class);
 ROute::post('accept/products/{product}',[ProductController::class,'acceptProduct'])->name('accept.product') ;
 Route::get('collections',[ProductController::class,'acceptedProducts'])->name('acceptedProducts') ;
-Route::get('request-donation',[ProductController::class,'showRequestDonationView'])->name('showRequestDonationView') ;
-Route::post('request-donation',[ProductController::class,'requestDonation'])->name('requestDonation') ;
+Route::get('send/email',[ProductController::class,'showRequestDonationView'])->name('showRequestDonationView') ;
+Route::post('send/email',[ProductController::class,'requestDonation'])->name('requestDonation') ;

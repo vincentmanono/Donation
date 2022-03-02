@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use App\Models\User;
 use App\Notifications\RequestDonationNotification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -201,13 +202,27 @@ class ProductController extends Controller
     public function acceptedProducts()
     {
         # code...
-        $products  = Product::where('status','accepted')->get() ;
+        
+        if ( Auth::user()->is_admin ) {
+            # code...
+            $products  = Product::where('status','accepted')->get() ;
+        } else {
+            # code...
+            $products  = Auth::user()->products ;
+        }
+        
         return view('admin.collect.index',compact('products') ) ;
     }
 
     public function showRequestDonationView()
     {
-        return view('admin.products.requestdonation') ;
+        $admin = User::where('is_admin',1)->first();
+        if (! $admin) {
+            # code...
+            return redirect()->route('home')->with('error',"You can not send email now , please try later") ;
+
+        }
+        return view('admin.products.requestdonation',compact('admin')) ;
 
     }
 
