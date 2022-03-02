@@ -40,7 +40,6 @@
               <ul class="site-menu main-menu js-clone-nav ml-auto d-none d-lg-block">
                 <li class="active"><a href="{{route('index')}}" class="nav-link">Home</a></li>
                 <li><a href="{{route('about')}}" class="nav-link">About Us</a></li>
-                <li><a href="{{route('contact')}}" class="nav-link">Contact</a></li>
               </ul>
             </nav>
 
