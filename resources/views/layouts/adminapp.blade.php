@@ -84,7 +84,7 @@
     <!-- Bootstrap popper Core JavaScript -->
     <script src="{{asset('admin/assets/node_modules/popper/popper.min.js')}}"></script>
     <script src="{{asset('admin/assets/node_modules/bootstrap/dist/js/bootstrap.min.js')}}"></script>
-    
+
     <!-- slimscrollbar scrollbar JavaScript -->
     <script src="{{asset('admin/assets/dist/js/perfect-scrollbar.jquery.min.js')}}"></script>
     <!--Wave Effects -->
