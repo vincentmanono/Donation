@@ -2,8 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,13 +17,24 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         \App\Models\User::factory(10)->create();
+
+        if ( User::where('email','admin@test.com')->count() <= 0) {
+            # code...
+            User::create([
+                'name'=>"Administrator",
+                'email'=>"admin@test.com",
+                'password'=>Hash::make("password"),
+                'is_admin'=> 1
+            ]) ;
+        }
+
         $this->call([
             CompanySeeder::class,
             ProductSeeder::class,
             ReceiveSeeder::class
 
         ]
-            
+
         );
     }
 }
