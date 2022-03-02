@@ -30,6 +30,7 @@
                                 <tr>
                                     <th>Doneted By</th>
                                     <th>Email</th>
+                                    <th>Products</th>
                                     <th>Action</th>
                                 </tr>
 
@@ -46,6 +47,7 @@
                                 <tr>
                                     <td> {{$donor->name}} </td>
                                     <td> {{ $donor->email}} </td>
+                                    <td> {{$donor->products_count}} </td>
                                     <td>
                                         <div class="row">
                                             <div>

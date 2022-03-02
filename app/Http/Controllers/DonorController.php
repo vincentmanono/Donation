@@ -16,7 +16,7 @@ class DonorController extends Controller
      */
     public function index()
     {
-        $donors = User::where('is_admin',0)->get();
+        $donors = User::where('is_admin',0)->withCount('products')->get() ;
         return view('admin.donors.index',compact('donors'));
     }
 
