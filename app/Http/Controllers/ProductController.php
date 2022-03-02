@@ -55,6 +55,7 @@ class ProductController extends Controller
     public function store(StoreProductRequest $request)
     {
        $product =  $request->validated() ;
+       return $product ;
        $product['user_id'] = Auth::user()->id ;
 
        if (file_exists($request->file('image'))) {

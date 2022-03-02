@@ -57,4 +57,14 @@ class User extends Authenticatable
         # code...
         return $this->is_admin == 1;
     }
+
+    /**
+     * Get the company associated with the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function company()
+    {
+        return $this->hasOne(Company::class);
+    }
 }

@@ -16,7 +16,7 @@ class CompanyController extends Controller
     public function index()
     {
         $companies = Company::latest()->get() ;
-        return response($companies) ;
+        return view('companies.index',compact('companies')) ;
     }
 
     /**
@@ -26,7 +26,7 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        //
+        return view('companies.create') ;
     }
 
     /**
@@ -48,7 +48,7 @@ class CompanyController extends Controller
      */
     public function show(Company $company)
     {
-        //
+        return view('companies.show',compact('company')) ;
     }
 
     /**

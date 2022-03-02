@@ -65,7 +65,7 @@
                                 <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
                                     <thead>
                                         <tr>
-                                           
+
 
 
                                                 <th>Doneted By</th>
@@ -76,7 +76,7 @@
                                                 <th>status</th>
                                                 <th>Action</th>
                                             </tr>
-                                       
+
                                     </thead>
                                     <tfoot>
                                         <tr>
@@ -86,7 +86,7 @@
                                                 <th>Type</th>
                                                 <th>Durability</th>
                                                 <th>status</th>
-                                             
+
                                                 <th>Action</th>
                                         </tr>
                                     </tfoot>
@@ -96,22 +96,22 @@
                                             <td> {{$product->donor->name}} </td>
                                             <td> {{ $product->name}} </td>
                                             <td> {{ $product->quantity}} </td>
-                                            <td> 
+                                            <td>
                                                 @if ($product->type)
                                                     <span class="badge badge-pill badge-info">Hardware</span>
                                                 @else
-                                                    <span class="badge badge-pill badge-light">Software</span>
+                                                    <span class="badge badge-pill badge-success">Software</span>
                                                 @endif
-                                            
+
                                             </td>
-                                            <td> 
-                                                @if ($product->durability)
+                                            <td>
+                                                @if ($product->durability == 0)
                                                     <span class="badge badge-pill badge-black">Long Lasting</span>
                                                 @else
                                                     <span class="badge badge-pill badge-warning">Perishable</span>
                                                 @endif
                                                  </td>
-                                            <td> 
+                                            <td>
                                                 @switch($product->status)
                                                     @case('accepted')
                                                     <span class="badge badge-pill badge-success">Received</span>
@@ -122,23 +122,23 @@
                                                     @default
                                                     <span class="badge badge-pill badge-secondary">Pedding</span>
                                                 @endswitch
-                                                
+
                                                  </td>
-                                                
-                                            <td> 
+
+                                            <td>
                                                 <a href="{{route('products.show',$product)}}"> <i class="fa fa-eye" aria-hidden="true">View</i> </a>
                                                  </td>
-                                           
+
                                         </tr>
-                                            
+
                                         @endforeach
-                                        
-                                        
+
+
                                     </tbody>
                                 </table>
 
 
-           
+
 
 
 

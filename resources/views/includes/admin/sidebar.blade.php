@@ -49,7 +49,7 @@
                            @else
                            <span class="hide-menu">Email Admins</span></a></li>
                            @endif
-                           
+
 
                    <li> <a class="waves-effect waves-dark" href="{{ route('acceptedProducts') }}"
                            aria-expanded="false">
@@ -75,10 +75,45 @@
                                    class="ti-layout-accordion-merged"></i><span class="hide-menu">Donors</span></a>
                            <ul aria-expanded="false" class="collapse">
                                <li><a href="{{ route('donors.index') }}">View Donors</a></li>
-                               <li><a href="#">Add Donor</a></li>
+
                            </ul>
                        </li>
                    @endif
+                   @if (Auth::user()->isAdmin())
+                   <li> <a class="waves-effect waves-dark" href="{{ route('companies.index') }}"
+                    aria-expanded="false">
+
+                    <i class="ti-layout-grid2"></i>
+                    <span class="hide-menu">Companies</span></a></li>
+                   @else
+                   @if ( Auth::user()->company != null )
+
+                   <li> <a class="waves-effect waves-dark" href="{{ route('companies.show',Auth::user()->company) }}"
+                    aria-expanded="false">
+
+                    <i class="ti-layout-grid2"></i>
+                    <span class="hide-menu">My Company</span></a></li>
+
+                   @endif
+
+                   @if (Auth::user()->donation_type == 1)
+
+                   <li> <a class="waves-effect waves-dark" href="{{ route('companies.create') }}" aria-expanded="false">
+
+                    <i class="fa fa-address-book" aria-hidden="true"></i>
+                    <span class="hide-menu">Add Company Details</span></a></li>
+
+                   @endif
+
+
+
+
+
+                   @endif
+
+
+
+
 
 
                </ul>

@@ -48,7 +48,7 @@
                                 </thead>
                                 <tfoot>
                                     <tr>
-                                        
+
                                         <th>Doneted By</th>
                                         <th>Name</th>
                                         <th>Quantity</th>
@@ -73,13 +73,13 @@
 
                                             </td>
                                             <td>
-                                                @if ($product->durability)
-                                                    <span class="badge badge-pill badge-black">Long Lasting</span>
+                                                @if ($product->durability == 0)
+                                                    <span class="badge badge-pill badge-blank">Long Lasting</span>
                                                 @else
                                                     <span class="badge badge-pill badge-warning">Perishable</span>
                                                 @endif
                                             </td>
-                                            
+
 
                                             <td>
                                                 <a href="{{ route('products.show', $product) }}"> <i class="fa fa-eye"

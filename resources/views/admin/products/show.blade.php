@@ -55,11 +55,11 @@
                                                     @if ($product->type)
                                                     <span class="badge badge-pill badge-info">Hardware</span>
                                                 @else
-                                                    <span class="badge badge-pill badge-light">Software</span>
+                                                    <span class="badge badge-pill badge-success">Software</span>
                                                 @endif
                                                 </td>
                                                 <td>
-                                                    @if ($product->durability)
+                                                    @if ($product->durability == 0)
                                                         <span class="badge badge-pill badge-black">Long Lasting</span>
                                                     @else
                                                         <span class="badge badge-pill badge-warning">Perishable</span>
