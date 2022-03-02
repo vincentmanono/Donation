@@ -12,7 +12,7 @@
                 <div class="d-flex justify-content-end align-items-center">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                        <li class="breadcrumb-item active"><a href="{{ route('home') }}">Collections</a></li>
+                        <li class="breadcrumb-item active"><a href="{{ route('home') }}">Donated</a></li>
                     </ol>
                     <a href="{{ route('products.create') }}" class="btn btn-info d-none d-lg-block m-l-15"><i
                             class="fa fa-plus-circle"></i> Create New</a>
@@ -31,8 +31,8 @@
 
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Collected Products </h4>
-                        <h6 class="card-subtitle">All Items Received</h6>
+                        <h4 class="card-title">Received Products </h4>
+                        <h6 class="card-subtitle">All Items Donated</h6>
                         <div class="table-responsive m-t-40">
                             <table id="myTable" class="table table-bordered table-striped">
                                 <thead>

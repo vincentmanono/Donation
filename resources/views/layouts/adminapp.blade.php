@@ -10,7 +10,7 @@
     <meta name="author" content="">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="{{asset('/admin/assets/images/favicon.png')}}">
-    <title>Elite Admin Template - The Ultimate Multipurpose admin template</title>
+    <title>{{ Config::get('app.name', 'Donation'); }}</title>
     <!-- This page CSS -->
     <!-- chartist CSS -->
     <link href="{{asset('/admin/assets/node_modules/morrisjs/morris.css')}}" rel="stylesheet">
@@ -106,10 +106,9 @@
     <script src="{{asset('admin/assets/node_modules/morrisjs/morris.min.js')}}"></script>
     <script src="{{asset('admin/assets/node_modules/jquery-sparkline/jquery.sparkline.min.js')}}"></script>
     <!-- Popup message jquery -->
-    <script src="{{asset('admin/assets/node_modules/toast-master/js/jquery.toast.js')}}"></script>
+    {{-- <script src="{{asset('admin/assets/node_modules/toast-master/js/jquery.toast.js')}}"></script> --}}
     <!-- Chart JS -->
     <script src="{{asset('admin/assets/dist/js/dashboard1.js')}}"></script>
-    <script src="{{asset('admin/assets/node_modules/toast-master/js/jquery.toast.js')}}"></script>
      <!-- start - This is for export functionality only -->
      <script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
      <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script>
