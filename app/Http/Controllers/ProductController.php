@@ -21,7 +21,15 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::latest()->get();
+        $products =[];
+
+        if ( Auth::user()->isAdmin() ) {
+            $products =  Product::latest()->get();
+        } else {
+            # code...
+            $products =   Auth::user()->products ;
+        }
+        
         
         return view('admin.products.index',compact('products')) ; 
     }
@@ -84,6 +92,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
+        $this->isAllowedToPerform($product);
         return view('admin.products.show',compact('product')) ;
     }
 
@@ -95,6 +104,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
+       $this->isAllowedToPerform($product);
         return view('admin.products.edit',compact('product'));
     }
 
@@ -107,6 +117,7 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, Product $product)
     {
+        $this->isAllowedToPerform($product);
         $data =  $request->validated() ;
  
         if (file_exists($request->file('image'))) {
@@ -145,6 +156,7 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
+        $this->isAllowedToPerform($product);
         $product->delete();
         return redirect()->route('products.index') ->with('success','product deleted') ;
 
@@ -219,6 +231,13 @@ class ProductController extends Controller
         
         return back() ;
 
+    }
+
+    public function isAllowedToPerform(Product $product)
+    {
+        # code...
+        $check = ! Auth::user()->isAdmin() && $product->user_id != Auth::user()->id ;
+        abort_if($check,403,"YOU ARE NOT ALLOWED TO VIEW THIS RESOURCE");
     }
 
 

@@ -52,4 +52,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Product::class, 'user_id', 'id');
     }
+    public function isAdmin()
+    {
+        # code...
+        return $this->is_admin == 1;
+    }
 }

@@ -28,15 +28,13 @@
                        </ul>
                    </li>
 
-                
 
-                   <li> <a class="waves-effect waves-dark" href="{{ route('home') }}"
-                    aria-expanded="false">
 
-                    <i class="icon-speedometer"></i>
-                    
-                    <span
-                        class="hide-menu">Donate Product</span></a></li>
+                   <li> <a class="waves-effect waves-dark" href="{{ route('home') }}" aria-expanded="false">
+
+                           <i class="icon-speedometer"></i>
+
+                           <span class="hide-menu">Donate Product</span></a></li>
 
 
                    <li class="nav-small-cap">------- DONATION -------</li>
@@ -46,45 +44,38 @@
                            aria-expanded="false">
 
                            <i class="fa fa-hand-o-down" aria-hidden="true"></i>
-                           <span
-                               class="hide-menu">Donation Request</span></a></li>
+                           <span class="hide-menu">Donation Request</span></a></li>
 
-                               <li> <a class="waves-effect waves-dark" href="{{ route('acceptedProducts') }}"
-                                aria-expanded="false">
-     
-                                <i class="fa fa-money" aria-hidden="true"></i>
-                                <span
-                                    class="hide-menu">Donation Received</span></a></li>
+                   <li> <a class="waves-effect waves-dark" href="{{ route('acceptedProducts') }}"
+                           aria-expanded="false">
+
+                           <i class="fa fa-money" aria-hidden="true"></i>
+                           <span class="hide-menu">Donation Received</span></a></li>
 
 
-                                    <li> <a class="waves-effect waves-dark" href="{{ route('products.index') }}"
-                                        aria-expanded="false">
-             
-                                       
-                                        <i class="fa fa-key" aria-hidden="true"></i>
-                                        <span
-                                            class="hide-menu">Donated Products</span></a></li>
-
-                                            <li> <a class="waves-effect waves-dark" href="{{ route('products.create') }}"
-                                                aria-expanded="false">
-                     
-                                                <i  class="ti-layout-grid2"></i>
-                                                <span
-                                                    class="hide-menu">Donate Product</span></a></li>
+                   <li> <a class="waves-effect waves-dark" href="{{ route('products.index') }}" aria-expanded="false">
 
 
+                           <i class="fa fa-key" aria-hidden="true"></i>
+                           <span class="hide-menu">Donated Products</span></a></li>
+
+                   <li> <a class="waves-effect waves-dark" href="{{ route('products.create') }}"
+                           aria-expanded="false">
+
+                           <i class="ti-layout-grid2"></i>
+                           <span class="hide-menu">Donate Product</span></a></li>
+
+                   @if (Auth::user()->isAdmin())
+                       <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i
+                                   class="ti-layout-accordion-merged"></i><span class="hide-menu">Donors</span></a>
+                           <ul aria-expanded="false" class="collapse">
+                               <li><a href="{{ route('donors.index') }}">View Donors</a></li>
+                               <li><a href="#">Add Donor</a></li>
+                           </ul>
+                       </li>
+                   @endif
 
 
-
-                  
-
-                   <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i
-                               class="ti-layout-accordion-merged"></i><span class="hide-menu">Donors</span></a>
-                       <ul aria-expanded="false" class="collapse">
-                           <li><a href="{{ route('donors.index') }}">View Donors</a></li>
-                           <li><a href="#">Add Donor</a></li>
-                       </ul>
-                   </li>
                </ul>
            </nav>
            <!-- End Sidebar navigation -->
