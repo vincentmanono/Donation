@@ -22,7 +22,7 @@
     <!-- Row -->
     <div class="row">
         <!-- Column -->
-        <div class="col-lg-4 col-xlg-3 col-md-5">
+        <div class="col-12">
             <div class="card">
                 <div class="card-body">
                     <center class="m-t-30"> <img src="{{asset('/admin/assets/images/users/5.jpg')}}" class="img-circle" width="150" />
@@ -48,7 +48,7 @@
         </div>
         <!-- Column -->
         <!-- Column -->
-        <div class="col-lg-8 col-xlg-9 col-md-7">
+        <div class="col-12">
             <div class="card">
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs profile-tab" role="tablist">
@@ -62,36 +62,83 @@
                             <div class="profiletimeline">
                                 <hr>
 
+                                <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+                                    <thead>
+                                        <tr>
+                                           
 
-            @foreach ($products as $product)
 
-            @if ($product->user_id == $donor->id)
+                                                <th>Doneted By</th>
+                                                <th>Name</th>
+                                                <th>Quantity</th>
+                                                <th>Type</th>
+                                                <th>Durability</th>
+                                                <th>status</th>
+                                                <th>Action</th>
+                                            </tr>
+                                       
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Doneted By</th>
+                                            <th>Name</th>
+                                                <th>Quantity</th>
+                                                <th>Type</th>
+                                                <th>Durability</th>
+                                                <th>status</th>
+                                             
+                                                <th>Action</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                        @foreach ($donor->products as $product)
+                                        <tr>
+                                            <td> {{$product->donor->name}} </td>
+                                            <td> {{ $product->name}} </td>
+                                            <td> {{ $product->quantity}} </td>
+                                            <td> 
+                                                @if ($product->type)
+                                                    <span class="badge badge-pill badge-info">Hardware</span>
+                                                @else
+                                                    <span class="badge badge-pill badge-light">Software</span>
+                                                @endif
+                                            
+                                            </td>
+                                            <td> 
+                                                @if ($product->durability)
+                                                    <span class="badge badge-pill badge-black">Long Lasting</span>
+                                                @else
+                                                    <span class="badge badge-pill badge-warning">Perishable</span>
+                                                @endif
+                                                 </td>
+                                            <td> 
+                                                @switch($product->status)
+                                                    @case('accepted')
+                                                    <span class="badge badge-pill badge-success">Received</span>
+                                                        @break
+                                                    @case('rejected')
+                                                    <span class="badge badge-pill badge-danger">Rejected</span>
+                                                        @break
+                                                    @default
+                                                    <span class="badge badge-pill badge-secondary">Pedding</span>
+                                                @endswitch
+                                                
+                                                 </td>
+                                                
+                                            <td> 
+                                                <a href="{{route('products.show',$product)}}"> <i class="fa fa-eye" aria-hidden="true">View</i> </a>
+                                                 </td>
+                                           
+                                        </tr>
+                                            
+                                        @endforeach
+                                        
+                                        
+                                    </tbody>
+                                </table>
 
-            <div class="sl-item">
-                <div class="sl-left"> <img src="/storage/{{$product->image}}" alt="{{$product->name}}"
-                        class="img-circle" /> </div>
-                <div class="sl-right">
-                    <div> <a href="javascript:void(0)" class="link">{{$product->name}}</a> <span
-                            class="sl-date">{{$product->created_at}}</span>
-                        <div class="m-t-20 row">
-                            <div class="col-md-3 col-xs-12"><img src="/storage/{{$product->image}}" alt="{{$product->name}}" class="img-responsive radius" /></div>
-                            <div class="col-md-9 col-xs-12">
-                                <p>{{$product->description}} </p> <a
-                                    href="javascript:void(0)" class="btn btn-success"> {{$product->status}}</a>
-                            </div>
-                        </div>
-                        <div class="like-comm m-t-20"> <a href="javascript:void(0)"
-                                class="link m-r-10">{{$product->quantity}} quantity</a> <a href="javascript:void(0)"
-                                class="link m-r-10"><i class=" text-danger"></i> {{$product->weight}}
-                                weight</a> </div>
-                    </div>
-                </div>
-            </div>
-            <hr>
 
-            @endif
-
-            @endforeach
+           
 
 
 

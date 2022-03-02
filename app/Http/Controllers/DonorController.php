@@ -47,11 +47,9 @@ class DonorController extends Controller
      * @param  \App\Models\Donor  $donor
      * @return \Illuminate\Http\Response
      */
-    public function show(User $donor,$id)
+    public function show(User $donor)
     {
-        $donor  = User::find($id);
-        $products = Product::all();
-        return view('admin.donors.show',compact('donor','products'));
+        return view('admin.donors.show',compact('donor'));
     }
 
     /**
