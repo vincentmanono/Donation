@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -31,7 +32,7 @@ class HomeController extends Controller
         $lastMonth = Carbon::now()->subMonth() ;
         $newDonation = Product::where('created_at','>=', $lastMonth )->count() ;
         $latestDonors = User::where('is_admin',0)->latest()->take(4)->get() ;
-        $products = Product::latest()->take(8)->get() ;
+        $products = Product::where('user_id',Auth::user()->id)->latest()->take(8)->get() ;
         return view('admin.index',compact('lastMonth','newDonation','donorsCount','latestDonors','products'));
     }
     

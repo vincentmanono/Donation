@@ -77,6 +77,7 @@
                                 </table>
                                 <div class="row" >
                                     <div class="col-md-2 m-2" > 
+                                        @if (Auth::user()->is_admin)
 
                                         <form action="{{route('accept.product',$product)}}" method="post">
                                             @csrf
@@ -93,12 +94,23 @@
                                             <button type="submit" class="btn btn-secondary">Reject Product</button>
                                         </form>
                                      </div>
-                                    <div class="col-md-2 m-2" > <a href="{{route('products.edit',$product)}}" > Edit Products </a> </div>
-                                    <form action="{{route('products.destroy',$product)}}" method="post">
-                                        @method("DELETE")
-                                        @csrf
-                                        <button type="submit" class="btn btn-danger">Delete Products</button>
-                                    </form> </div>
+                                            
+                                        @endif
+
+                                        @if ($product->status == 'pedding' || $product->status == 'rejected' || Auth::user()->isAdmin()  )
+
+                                        <div class="col-md-2 m-2" > <a href="{{route('products.edit',$product)}}" > Edit Products </a> </div>
+                                        <form action="{{route('products.destroy',$product)}}" method="post">
+                                            @method("DELETE")
+                                            @csrf
+                                            <button type="submit" class="btn btn-danger">Delete Products</button>
+                                        </form> 
+                                            
+                                        @endif
+
+                                        
+                                   
+                                </div>
                                 </div>
                             </p>
                         </div>
