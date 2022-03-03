@@ -7,7 +7,7 @@ use App\Http\Requests\StoreCompanyRequest;
 use App\Http\Requests\UpdateCompanyRequest;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Str ;
+use Illuminate\Support\Str;
 
 class CompanyController extends Controller
 {
@@ -18,8 +18,10 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        $companies = Company::latest()->get() ;
-        return view('companies.index',compact('companies')) ;
+        abort_if(!Auth::user()->isAdmin(),"You are not allowed to view that route" );
+
+        $companies = Company::latest()->get();
+        return view('companies.index', compact('companies'));
     }
 
     /**
@@ -29,7 +31,7 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        return view('companies.create') ;
+        return view('companies.create');
     }
 
     /**
@@ -41,52 +43,48 @@ class CompanyController extends Controller
     public function store(StoreCompanyRequest $request)
     {
         $data = $request->validated();
-        $user = Auth::user() ;
-        if ( $user->company != null || !empty($user->company) ) {
+        $user = Auth::user();
+        if ($user->company != null || !empty($user->company)) {
             # code...
-            return redirect()->route('companies.show',$user->company)->with('error',"You already have a company") ;
+            return redirect()->route('companies.show', $user->company)->with('error', "You already have a company");
         }
 
         if (file_exists($request->file('document'))) {
             // dd($request);
-             // Get filename with extension
-             $filenameWithExt = $request->file('document')->getClientOriginalName();
+            // Get filename with extension
+            $filenameWithExt = $request->file('document')->getClientOriginalName();
 
 
 
-             // Get extension
-             $extension = $request->file('document')->getClientOriginalExtension();
+            // Get extension
+            $extension = $request->file('document')->getClientOriginalExtension();
 
-             // Create new filename
-             $filenameToStore = (string) Str::uuid() . '_' . time() . '.' . $extension;
+            // Create new filename
+            $filenameToStore = (string) Str::uuid() . '_' . time() . '.' . $extension;
 
-             // Uplaod image
+            // Uplaod image
 
-             $path = $request->file('document')->storeAs('public/companies', $filenameToStore);
-             $avatar  = $filenameToStore;
-            $data['certificate'] = $avatar ;
-
-
-         }
+            $path = $request->file('document')->storeAs('public/companies', $filenameToStore);
+            $avatar  = $filenameToStore;
+            $data['certificate'] = $avatar;
+        }
 
 
 
 
 
         $company = $user->company()->create([
-            'name'=> $data['company'],
-            'certificate'=> $data['certificate'],
-            'address'=> $data['address'],
-            'email'=> $data['email'],
-            'url'=> $data['url'],
-            'location'=> $data['location'],
-            'services'=> $data['services']
+            'name' => $data['company'],
+            'certificate' => $data['certificate'],
+            'address' => $data['address'],
+            'email' => $data['email'],
+            'url' => $data['url'],
+            'location' => $data['location'],
+            'services' => $data['services']
 
-        ]) ;
+        ]);
 
-         return redirect()->route('companies.show',$company)->with('Company Created successfully') ;
-
-
+        return redirect()->route('companies.show', $company)->with('Company Created successfully');
     }
 
     /**
@@ -97,7 +95,9 @@ class CompanyController extends Controller
      */
     public function show(Company $company)
     {
-        return view('companies.show',compact('company')) ;
+
+        abort_if(!Auth::user()->isAdmin() && $company->user_id !=Auth::user()->id,"You are not allowed to view that route" );
+        return view('companies.show', compact('company'));
     }
 
     /**
