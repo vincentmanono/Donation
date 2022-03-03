@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->boolean('donation_type')->default(false) ; //individual or company/org
+            $table->integer('donation_type')->default(false) ; //individual or company/org
             $table->boolean('is_admin')->default(false) ;
             $table->rememberToken();
             $table->timestamps();

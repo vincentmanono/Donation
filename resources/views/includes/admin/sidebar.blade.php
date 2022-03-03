@@ -96,7 +96,7 @@
 
                    @endif
 
-                   @if (Auth::user()->donation_type == 1)
+                   @if (Auth::user()->donation_type == 1 &&  empty(Auth::user()->company) )
 
                    <li> <a class="waves-effect waves-dark" href="{{ route('companies.create') }}" aria-expanded="false">
 

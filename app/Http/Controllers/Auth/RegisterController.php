@@ -66,11 +66,15 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $donationtype = intval($data['donation_type']) ? 1 : 0 ;
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'donation_type'=>$data['donation_type'] ,
+
             'password' => Hash::make($data['password']),
         ]);
+        $user->donation_type =   $donationtype ;
+        $user->save() ;
+        return $user ;
     }
 }
