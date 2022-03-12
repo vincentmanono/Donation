@@ -25,14 +25,16 @@ class StoreCompanyRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required','string'],
-            'certificate'=> ['required','string'],
+            'company' => ['required','string','unique:companies,name'],
+            'document'=> ['required','file'],
             'address'=> ['required','string'],
             'email'=> ['required','email'],
-            'url'=> ['required','string','url','active_url'],
+            'url'=> ['required','url'],
             'location'=> ['required','string'],
             'services'=> ['required','string'],
 
         ];
     }
+
+
 }
