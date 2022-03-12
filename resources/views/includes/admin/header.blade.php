@@ -5,16 +5,16 @@
         <!-- Logo -->
         <!-- ============================================================== -->
         <div class="navbar-header">
-            <a class="navbar-brand" href="{{route('home')}}">
+            <a class="navbar-brand" href="{{ route('home') }}">
                 <!-- Logo icon --><b>
                     <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                     <!-- Dark Logo icon -->
-                    <a href="{{route('home')}}"> {{ Config::get('app.name', 'Donation'); }} </a>
+                    <a href="{{ route('home') }}"> {{ Config::get('app.name', 'Donation') }} </a>
                 </b>
                 <!--End Logo icon -->
                 <!-- Logo text --><span>
                     <!-- dark Logo text -->
-                  
+
                 </span>
             </a>
         </div>
@@ -43,8 +43,9 @@
                 <!-- ============================================================== -->
                 <li class="nav-item dropdown u-pro">
                     <a class="nav-link dropdown-toggle waves-effect waves-dark profile-pic" href=""
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{{asset('/admin/assets/images/users/1.jpg')}}"
-                            alt="user" class=""> <span class="hidden-md-down">{{Auth::user()->name}}
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img
+                            src="{{ asset('/admin/assets/images/users/1.jpg') }}" alt="user" class="">
+                        <span class="hidden-md-down">{{ Auth::user()->name }}
                             &nbsp;<i class="fa fa-angle-down"></i></span> </a>
                     <div class="dropdown-menu dropdown-menu-right animated flipInY">
                         <!-- text-->
@@ -63,8 +64,8 @@
                         <!-- text-->
                         <div class="dropdown-divider"></div>
 
-                        <div class="dropdown-divider"></div><a class="dropdown-item dropdown-footer btn btn-danger"
-                            href="{{ route('logout') }}" onclick="event.preventDefault();
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item dropdown-footer btn btn-danger" href="{{ route('logout') }}" onclick="event.preventDefault();
             document.getElementById('logout-form').submit();">
                             {{ __('Logout') }}
                         </a>
