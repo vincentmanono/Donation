@@ -2,7 +2,7 @@
 @section('content')
 <form class="form-horizontal form-material" id="loginform" method="POST" action="{{route('login')}}">
     @csrf
-    <h3 class="box-title m-t-40 m-b-0">Login Now</h3><small>Helping !!</small>
+    <h3 class="box-title m-t-40 m-b-0">Login Now</h3>
 
     <div class="form-group m-t-20 ">
         <div class="col-xs-12">
@@ -49,7 +49,7 @@
                 <label class="custom-control-label" for="customCheck1"> {{ __('Remember Me') }}</label>
             </div>
         </div>
-        <a href="{{ route('password.request') }}" id="to-recover" class="text-dark pull-right col-md-6"><i class="fa fa-lock m-r-5"></i> Forgot pwd?</a>
+        <a href="{{ route('password.request') }}" id="to-recover" class="text-dark pull-right col-md-6"><i class="fa fa-lock m-r-5"></i> Forgot password?</a>
 
 
     </div>

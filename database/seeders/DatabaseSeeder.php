@@ -26,8 +26,15 @@ class DatabaseSeeder extends Seeder
                 'password'=>Hash::make("password"),
                 'is_admin'=> 1
             ]) ;
+
         }
 
+        User::create([
+            'name'=>"Donor",
+            'email'=>"donor@test.com",
+            'password'=>Hash::make("password"),
+            'is_admin'=> 0
+        ]) ;
         $this->call([
             CompanySeeder::class,
             ProductSeeder::class,

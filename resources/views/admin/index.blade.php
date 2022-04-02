@@ -17,7 +17,7 @@
                             <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
                             <li class="breadcrumb-item active">Dashboard</li>
                         </ol>
-                       
+
                     </div>
                 </div>
             </div>
@@ -171,9 +171,9 @@
                                 </div>
                             </div>
 
-                                
+
                             @endforeach
-                            
+
                         </div>
                     </div>
                 </div>
@@ -237,15 +237,15 @@
                                             @default
                                             <span class="badge badge-pill badge-secondary">Pedding</span>
                                         @endswitch
-                                        
+
                                         </td>
                                         <td class="txt-oflo">April 18, 2017 {{{ $product->created_at->format("m d, Y")}}} </td>
                                         <td><a href="{{route('products.show',$product)}}"> <i class="fa fa-eye" aria-hidden="true"></i> </a></td>
                                     </tr>
-                                        
+
                                     @endforeach
-                                    
-                                  
+
+
                                 </tbody>
                             </table>
                         </div>
