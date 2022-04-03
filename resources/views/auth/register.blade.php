@@ -2,7 +2,7 @@
 @section('content')
 <form class="form-horizontal form-material" id="loginform" method="POST" action="{{route('register')}}">
     @csrf
-    <h3 class="box-title m-t-40 m-b-0">Register Now</h3><small>Create your account and enjoy</small>
+    <h3 class="box-title m-t-40 m-b-0">Register Now</h3>
     <div class="form-group m-t-20">
         <div class="col-xs-12">
             <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
@@ -77,14 +77,6 @@
         </div>
     </div>
 
-    <div class="form-group row">
-        <div class="col-md-12">
-            <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="customCheck1">
-                <label class="custom-control-label" for="customCheck1">I agree to all <a href="javascript:void(0)">Terms</a></label>
-            </div>
-        </div>
-    </div>
     <div class="form-group text-center m-t-20">
         <div class="col-xs-12">
             <button class="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light" type="submit">Sign Up</button>

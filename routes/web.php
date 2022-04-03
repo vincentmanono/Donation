@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\DonorController;
+use App\Http\Controllers\Auth\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,10 @@ Route::resource('donors',DonorController::class);
 Route::get('/',[PageController::class,'index'])->name('index');
 Route::get('/about',[PageController::class,'about'])->name('about');
 Route::get('/services',[PageController::class,'services'])->name('services');
+
+// edit user profile
+Route::get('/userEdit/{id}',[PageController::class,'edit'])->name('user.edit');
+Route::put('/userUpdate/{id}',[PageController::class,'update'])->name('user.update');
 
 
 

@@ -10,10 +10,7 @@
                                src="{{ asset('/admin/assets/images/users/1.jpg') }}" alt="user-img"
                                class="img-circle"><span class="hide-menu">{{ Auth::user()->name }}</span></a>
                        <ul aria-expanded="false" class="collapse">
-                           <li><a href=""><i class="ti-user"></i> My Profile</a></li>
-                           <li><a href="#"><i class="ti-wallet"></i> My Balance</a></li>
-                           <li><a href="#"><i class="ti-email"></i> Inbox</a></li>
-                           <li><a href="#"><i class="ti-settings"></i> Account Setting</a></li>
+                           <li><a href="{{route('user.edit',Auth::user()->id)}}"><i class="ti-user"></i> My Profile</a></li>
                            <li><a class="dropdown-item dropdown-footer btn btn-danger" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                     document.getElementById('logout-form').submit();">
