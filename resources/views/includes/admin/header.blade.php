@@ -49,9 +49,9 @@
                             &nbsp;<i class="fa fa-angle-down"></i></span> </a>
                     <div class="dropdown-menu dropdown-menu-right animated flipInY">
                         <!-- text-->
-                        <a href="javascript:void(0)" class="dropdown-item"><i class="ti-user"></i> My
+                        <a href="{{route('user.edit',Auth::user()->id)}}" class="dropdown-item"><i class="ti-user"></i> My
                             Profile</a>
-                 
+
                         <!-- text-->
                         <div class="dropdown-divider"></div>
 

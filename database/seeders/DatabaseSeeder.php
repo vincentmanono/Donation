@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
             # code...
             User::create([
                 'name'=>"Administrator",
-                'email'=>"admin@test.com",
+                'email'=>"rukia@test.com",
                 'password'=>Hash::make("password"),
                 'is_admin'=> 1
             ]) ;
@@ -35,13 +35,13 @@ class DatabaseSeeder extends Seeder
             'password'=>Hash::make("password"),
             'is_admin'=> 0
         ]) ;
-        $this->call([
-            CompanySeeder::class,
-            ProductSeeder::class,
-            ReceiveSeeder::class
+        // $this->call([
+        //     CompanySeeder::class,
+        //     ProductSeeder::class,
+        //     ReceiveSeeder::class
 
-        ]
+        // ]
 
-        );
+        // );
     }
 }

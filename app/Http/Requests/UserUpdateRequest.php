@@ -27,6 +27,7 @@ class UserUpdateRequest extends FormRequest
             //
             'name'=>"required|string",
             'email'=>"required|email",
+            'is_admin'=>'required',
             'old_password'=>"required",
             'password'=>"confirmed|min:8|nullable",
         ];

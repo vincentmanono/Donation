@@ -33,6 +33,8 @@ Route::get('/services',[PageController::class,'services'])->name('services');
 // edit user profile
 Route::get('/userEdit/{id}',[PageController::class,'edit'])->name('user.edit');
 Route::put('/userUpdate/{id}',[PageController::class,'update'])->name('user.update');
+Route::get('/users',[PageController::class, 'users'])->name('user.index');
+Route::delete('user/{id}',[PageController::class, 'destroy'])->name('user.delete');
 
 
 
