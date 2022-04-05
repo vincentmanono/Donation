@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Product;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\UserUpdateRequest;
@@ -39,6 +40,25 @@ class PageController extends Controller
 
 
         $data = $request->validated();
+
+        if (file_exists($request->file('image'))) {
+            // dd($request);
+             // Get filename with extension
+             $filenameWithExt = $request->file('image')->getClientOriginalName();
+
+
+
+             // Get extension
+             $extension = $request->file('image')->getClientOriginalExtension();
+
+             // Create new filename
+             $filenameToStore = (string) Str::uuid() . '_' . time() . '.' . $extension;
+
+             // Uplaod image
+
+             $path = $request->file('image')->storeAs('public/user', $filenameToStore);
+             $avatar  = $filenameToStore;
+            }
         $user = User::find($id) ;
 
         if (! Hash::check($data["old_password"], $user->password) ) {
@@ -52,6 +72,7 @@ class PageController extends Controller
             $user->name = $data["name"] ;
             $user->email = $data["email"] ;
             $user->is_admin=$data["is_admin"];
+            $user->image=$avatar;
 
             if($user->save()){
 

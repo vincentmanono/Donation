@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('password');
             $table->integer('donation_type')->default(false) ; //individual or company/org
             $table->boolean('is_admin')->default(false) ;
+            $table->string('image')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

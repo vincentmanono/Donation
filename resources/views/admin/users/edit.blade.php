@@ -30,7 +30,7 @@
         <div class="col-lg-4 col-xlg-3 col-md-5">
             <div class="card">
                 <div class="card-body">
-                    <center class="m-t-30"> <img src="../assets/images/users/5.jpg" class="img-circle" width="150" />
+                    <center class="m-t-30"> <img src="/storage/user/{{$user->image}}" class="img-circle" width="150" />
                         <h4 class="card-title m-t-10">{{$user->name}}</h4>
                         <h6 class="card-subtitle">
                             @if ($user->is_admin==1)
@@ -49,13 +49,13 @@
                 </div>
                 <div class="mb-2 ml-2">
                     <form action="{{ route('user.delete',$user->id) }}" method="post">
-                   @csrf
-                   @method('DELETE')
-                   <button style="margin-left: 3%"
-                       onclick="return confirm('Are you sure you want to delete this User?')"
-                       class="btn btn-sm btn-danger" type="submit">Delete</button>
-               </form>
-               </div>
+                        @csrf
+                        @method('DELETE')
+                        <button style="margin-left: 3%"
+                            onclick="return confirm('Are you sure you want to delete this User?')"
+                            class="btn btn-sm btn-danger" type="submit">Delete</button>
+                    </form>
+                </div>
             </div>
         </div>
         <!-- Column -->
@@ -112,41 +112,51 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Current Password <span style="color: red;">*</span> </label>
-                                            <input type="password" name="old_password" class="form-control"
-                                                placeholder="Enter number">
+                                            <label for="">Image</label>
+                                            <input type="file" name="image" class="form-control" src="" alt="">
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>{{ __('New Password') }}</label>
-                                            <input type="password" name="password" value=""
-                                                class="form-control @error('password') is-invalid @enderror"
-                                                placeholder="Password">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Current Password <span style="color: red;">*</span> </label>
+                                                <input type="password" name="old_password" class="form-control"
+                                                    placeholder="Enter number">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>{{ __('New Password') }}</label>
+                                                <input type="password" name="password" value=""
+                                                    class="form-control @error('password') is-invalid @enderror"
+                                                    placeholder="Password">
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>{{ __('Confirm password') }}</label>
-                                            <input type="password" name="password_confirmation" value=""
-                                                class="form-control" placeholder="">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>{{ __('Confirm password') }}</label>
+                                                <input type="password" name="password_confirmation" value=""
+                                                    class="form-control" placeholder="">
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <button class="btn btn-success">Update Profile</button>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
 
+                                                <button class="btn btn-success">Update Profile</button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                            </form>
                         </div>
-
-                        </form>
                     </div>
                 </div>
             </div>
         </div>
+        <!-- Column -->
     </div>
-    <!-- Column -->
-</div>
 </div>
 
 @endsection
