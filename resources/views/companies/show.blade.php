@@ -31,7 +31,7 @@
                     <div class="col-12">
                        <div class="jumbotron">
                            <h1 class="display-4">{{$company->name}}</h1>
-                           <p class="lead">{{$company->donor->name}}</p>
+                           <p class="lead">{{$company->donor->name??""}}</p>
                            <hr class="my-4">
                            <p><span  class="text text-info h3" >Url : </span> <a href="{{$company->url}}">{{ $company->name . " Site"}}</a> </p>
                            <p><span  class="text text-info h3" >Email : </span> {{ $company->email}} </p>
@@ -40,9 +40,19 @@
                            <p><span  class="text text-info h3" >Services : </span> {{ $company->services}} </p>
                            <p><a class="btn btn-success" href="{{'/storage/companies/'. $company->certificate }}">Download Company Certificate</a></p>
 
+                           <div>
+                            <form action="{{ route('companies.destroy',$company->id) }}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button style="margin-left: 3%"
+                                    onclick="return confirm('Are you sure you want to delete this Company?')"
+                                    class="btn btn-sm btn-danger" type="submit">Delete</button>
+                            </form>
+                           </div>
                        </div>
                     </div>
                 </div>
+
                 <!-- ============================================================== -->
                 <!-- End PAge Content -->
                 <!-- ============================================================== -->

@@ -131,6 +131,14 @@ class CompanyController extends Controller
      */
     public function destroy(Company $company)
     {
-        //
+        abort_if(!Auth::user()->isAdmin() && $company->user_id !=Auth::user()->id,"You are not allowed to view that route" );
+
+        $company->delete();
+        if($company){
+            return redirect()->route('companies.index')->with('success','You have successfully deleted the company');
+        }
+        else{
+            return back()->with('error','An error occured, please try again or contact the administrator');
+        }
     }
 }

@@ -84,7 +84,8 @@
                                         <form action="{{route('accept.product',$product)}}" method="post">
                                             @csrf
                                             <input type="hidden" name="status" value="accepted">
-                                            <button type="submit" class="btn btn-success">Accept Product</button>
+                                            <button onclick="return confirm('Are you sure you want to Accept this Product?')"
+                                            type="submit" class="btn btn-success">Accept Product</button>
                                         </form>
 
                                     </div>
@@ -93,7 +94,8 @@
                                         <form action="{{route('accept.product',$product)}}" method="post">
                                             @csrf
                                             <input type="hidden" name="status" value="rejected">
-                                            <button type="submit" class="btn btn-secondary">Reject Product</button>
+                                            <button onclick="return confirm('Are you sure you want to Reject this Product?')"
+                                              type="submit" class="btn btn-secondary">Reject Product</button>
                                         </form>
                                      </div>
 
@@ -105,7 +107,8 @@
                                         <form action="{{route('products.destroy',$product)}}" method="post">
                                             @method("DELETE")
                                             @csrf
-                                            <button type="submit" class="btn btn-danger">Delete Products</button>
+                                            <button onclick="return confirm('Are you sure you want to delete this Product?')"
+                                            type="submit" class="btn btn-danger">Delete Products</button>
                                         </form>
 
                                         @endif

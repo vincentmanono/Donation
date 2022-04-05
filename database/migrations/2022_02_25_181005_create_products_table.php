@@ -27,7 +27,7 @@ return new class extends Migration
             $table->longText("description")->nullable() ;
             $table->enum('status',['pedding','accepted','rejected'])->default('pedding');
             $table->boolean("transport")->nullable() ; //(willing to transport or red cross to pick)
-            $table->foreignIdFor(User::class,'user_id') ;
+            $table->foreignIdFor(User::class,'user_id')->onDelete('cascade') ;
 
 
             $table->timestamps();

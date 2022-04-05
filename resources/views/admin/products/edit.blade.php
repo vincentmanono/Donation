@@ -12,7 +12,7 @@
                         <div class="d-flex justify-content-end align-items-center">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                                <li class="breadcrumb-item active">Datatable</li>
+                                <li class="breadcrumb-item active">Products</li>
                             </ol>
                             <a href="{{route('products.create')}}"class="btn btn-info d-none d-lg-block m-l-15"><i class="fa fa-plus-circle"></i> Create New</a>
                         </div>
@@ -46,7 +46,7 @@
                                 <option value="1" >HardWare (touchable) </option>
                                 <option value="0" >Software  </option>
                               </select>
-                             
+
                             </div>
 
                             <div class="form-group col-6 ">
@@ -69,7 +69,7 @@
                                 <input id="location" class="form-control" value="{{ $product->location }}" type="text" name="location">
                             </div>
 
-                           
+
 
                             <div class="form-group col-6 ">
                                 <label for="type">Will you facilitate transporation ?</label>
@@ -78,7 +78,7 @@
                                   <option value="1" >Yes </option>
                                   <option value="0" >No  </option>
                                 </select>
-                               
+
                               </div>
                               <div class="form-group col-6">
                                   <label for="description">Description</label>
@@ -89,7 +89,7 @@
                             <button type="submit" class="btn btn-primary btn-block">Submit</button>
 
                         </form>
-                    
+
                 </div>
                 <!-- ============================================================== -->
                 <!-- End PAge Content -->
@@ -98,10 +98,10 @@
                 <!-- Right sidebar -->
                 <!-- ============================================================== -->
                 <!-- .right-sidebar -->
-               
+
                 <!-- ============================================================== -->
                 <!-- End Right sidebar -->
                 <!-- ============================================================== -->
             </div>
-    
+
 @endsection

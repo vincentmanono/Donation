@@ -55,11 +55,10 @@ class ProductController extends Controller
     public function store(StoreProductRequest $request)
     {
        $product =  $request->validated() ;
-       return $product ;
+    //    return $product ;
        $product['user_id'] = Auth::user()->id ;
 
        if (file_exists($request->file('image'))) {
-        // dd($request);
          // Get filename with extension
          $filenameWithExt = $request->file('image')->getClientOriginalName();
 
@@ -123,7 +122,6 @@ class ProductController extends Controller
         $data =  $request->validated() ;
 
         if (file_exists($request->file('image'))) {
-         // dd($request);
           // Get filename with extension
           $filenameWithExt = $request->file('image')->getClientOriginalName();
 
@@ -168,7 +166,6 @@ class ProductController extends Controller
     {
         # code...
         if (file_exists($request->file('image'))) {
-            // dd($request);
              // Get filename with extension
              $filenameWithExt = $request->file('image')->getClientOriginalName();
 
@@ -196,7 +193,7 @@ class ProductController extends Controller
             'status' => trim( $request->status)
         ]);
 
-        Session::flash('success',"Product accepted.");
+        Session::flash('success',"Product status Updated.");
         return back();
     }
 
