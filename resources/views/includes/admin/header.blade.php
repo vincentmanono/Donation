@@ -44,7 +44,7 @@
                 <li class="nav-item dropdown u-pro">
                     <a class="nav-link dropdown-toggle waves-effect waves-dark profile-pic" href=""
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img
-                        src="/storage/user/{{$user->image}}" alt="user" class="">
+                        src={{ Str::contains(auth()->user()->image, 'http') ? auth()->user()->image : '/storage/user/' . auth()->user()->image }} alt="user" class="">
                         <span class="hidden-md-down">{{ Auth::user()->name }}
                             &nbsp;<i class="fa fa-angle-down"></i></span> </a>
                     <div class="dropdown-menu dropdown-menu-right animated flipInY">
