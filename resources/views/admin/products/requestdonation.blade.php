@@ -25,65 +25,79 @@
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
                 <div class="row">
+                    <div class="card col-md-12 ">
+                        <div class="card-body row">
+                            <h4 class="card-title">Email</h4>
+                            <form action="{{route('requestDonation')}}" method="post" class="col-12" >
+                                @csrf
+                                   <div class="form-group">
+                                       <label for="email" class=" col-form-label text-md-end">{{ __('Receiver Email Address') }}</label>
 
-                    <form action="{{route('requestDonation')}}" method="post" class="col-12" >
-                     @csrf
-                        <div class="form-group">
-                            <label for="email" class=" col-form-label text-md-end">{{ __('Receiver Email Address') }}</label>
+                                       <div class="col-md-6">
+                                           @if (Auth::user()->is_admin)
+                                           <div class="form-group">
+                                             <select class="form-control @error('email') is-invalid @enderror" name="email" id="email">
+                                                 @foreach ($users as $user)
+                                                 <option value="{{ $user->email }}"> <strong class="text text-bold text-info" >{{ $user->name  }}</strong>  {{  "  | ". $user->email }} </option>
 
-                            <div class="col-md-6">
-                                @if (Auth::user()->is_admin)
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                                 @endforeach
 
-                                @else
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" disabled value="{{ $admin->email }}" required autocomplete="email">
+                                             </select>
+                                           </div>
 
-                                @endif
+                                           @else
+                                           <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" disabled value="{{ $admin->email }}" required autocomplete="email">
+
+                                           @endif
 
 
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+                                           @error('email')
+                                               <span class="invalid-feedback" role="alert">
+                                                   <strong>{{ $message }}</strong>
+                                               </span>
+                                           @enderror
+                                       </div>
+                                   </div>
+
+                                   <div class="form-group">
+                                       <label for="subject" class=" col-form-label text-md-end">{{ __('Subject') }}</label>
+
+                                       <div class="col-md-6">
+                                           <input id="subject" type="text" class="form-control @error('subject') is-invalid @enderror" name="subject" value="{{ old('subject') }}" required autocomplete="subject">
+
+                                           @error('subject')
+                                               <span class="invalid-feedback" role="alert">
+                                                   <strong>{{ $message }}</strong>
+                                               </span>
+                                           @enderror
+                                       </div>
+                                   </div>
+
+                                   <div class="form-group">
+                                       <label for="message" class=" col-form-label text-md-end">{{ __('message') }}</label>
+
+                                       <div class="col-md-6">
+                                           <textarea name="message" id="message" required class="form-control @error('subject') is-invalid @enderror" cols="30" rows="10"></textarea>
+
+                                           @error('message')
+                                               <span class="invalid-feedback" role="alert">
+                                                   <strong>{{ $message }}</strong>
+                                               </span>
+                                           @enderror
+                                       </div>
+                                   </div>
+
+                                   <button type="submit" class="btn btn-info "> {{ Auth::user()->is_admin ? "Send request" : "Send Email"  }} </button>
+
+
+
+                               </form>
                         </div>
-
-                        <div class="form-group">
-                            <label for="subject" class=" col-form-label text-md-end">{{ __('Subject') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="subject" type="text" class="form-control @error('subject') is-invalid @enderror" name="subject" value="{{ old('subject') }}" required autocomplete="subject">
-
-                                @error('subject')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="message" class=" col-form-label text-md-end">{{ __('message') }}</label>
-
-                            <div class="col-md-6">
-                                <textarea name="message" id="message" required class="form-control @error('subject') is-invalid @enderror" cols="30" rows="10"></textarea>
-
-                                @error('message')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <button type="submit" class="btn btn-primary"> {{ Auth::user()->is_admin ? "Send request" : "Send Email"  }} </button>
+                    </div>
 
 
-                    
-                    </form>
-                       
-                    
+
+
                 </div>
                 <!-- ============================================================== -->
                 <!-- End PAge Content -->
@@ -92,10 +106,10 @@
                 <!-- Right sidebar -->
                 <!-- ============================================================== -->
                 <!-- .right-sidebar -->
-               
+
                 <!-- ============================================================== -->
                 <!-- End Right sidebar -->
                 <!-- ============================================================== -->
             </div>
-    
+
 @endsection

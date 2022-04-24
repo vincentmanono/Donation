@@ -134,7 +134,7 @@ class ProductController extends Controller
           // Create new filename
           $filenameToStore = $filename . '_' . time() . '.' . $extension;
 
-          // Uplaod image
+          // upload image
 
           $path = $request->file('image')->storeAs('public/products', $filenameToStore);
           $avatar  = $filenameToStore;
@@ -178,7 +178,7 @@ class ProductController extends Controller
              // Create new filename
              $filenameToStore = $filename . '_' . time() . '.' . $extension;
 
-             // Uplaod image
+             // upload image
              $path = $request->file('image')->storeAs('public/products', $filenameToStore);
              $avatar  = $filenameToStore;
             $product['image'] = $avatar ;
@@ -215,12 +215,12 @@ class ProductController extends Controller
     public function showRequestDonationView()
     {
         $admin = User::where('is_admin',1)->first();
+        $users = User::where('is_admin',0)->latest()->orderBy("name")-> get();
         if (! $admin) {
-            # code...
             return redirect()->route('home')->with('error',"You can not send email now , please try later") ;
 
         }
-        return view('admin.products.requestdonation',compact('admin')) ;
+        return view('admin.products.requestdonation',compact('admin','users')) ;
 
     }
 
@@ -236,8 +236,8 @@ class ProductController extends Controller
             Notification::send(Auth::user(),new RequestDonationNotification($request->all())) ;
             Session::flash('success',"Request send.");
         } catch (\Throwable $th) {
-            throw $th;
-            // Session::flash('error',$th->getMessage());
+
+            Session::flash('error',$th->getMessage());
 
         }
 

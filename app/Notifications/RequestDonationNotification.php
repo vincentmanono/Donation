@@ -44,7 +44,7 @@ class RequestDonationNotification extends Notification
         return (new MailMessage)
                     ->subject($this->data['subject'])
                     ->line($this->data['message'])
-                    ->action('Click here to donate', url('/'))
+                    ->action('Respond To Email', route('showRequestDonationView'))
                     ->line('Thank you for using our application!');
     }
 
