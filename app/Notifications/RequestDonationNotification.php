@@ -6,6 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use Illuminate\Support\Facades\Auth;
 
 class RequestDonationNotification extends Notification
 {
@@ -41,7 +42,8 @@ class RequestDonationNotification extends Notification
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)
+        return (new MailMessage)->from(Auth::user()->email,Auth::user()->name)
+
                     ->subject($this->data['subject'])
                     ->line($this->data['message'])
                     ->action('Respond To Email', route('showRequestDonationView'))

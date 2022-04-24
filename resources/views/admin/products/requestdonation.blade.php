@@ -30,12 +30,13 @@
                             <h4 class="card-title">Email</h4>
                             <form action="{{route('requestDonation')}}" method="post" class="col-12" >
                                 @csrf
-                                   <div class="form-group">
-                                       <label for="email" class=" col-form-label text-md-end">{{ __('Receiver Email Address') }}</label>
+
 
                                        <div class="col-md-6">
                                            @if (Auth::user()->is_admin)
                                            <div class="form-group">
+                                        <label for="email" class=" col-form-label text-md-end">{{ __('Receiver Email Address') }}</label>
+
                                              <select class="form-control @error('email') is-invalid @enderror" name="email" id="email">
                                                  @foreach ($users as $user)
                                                  <option value="{{ $user->email }}"> <strong class="text text-bold text-info" >{{ $user->name  }}</strong>  {{  "  | ". $user->email }} </option>
@@ -43,21 +44,22 @@
                                                  @endforeach
 
                                              </select>
-                                           </div>
-
-                                           @else
-                                           <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" disabled value="{{ $admin->email }}" required autocomplete="email">
-
-                                           @endif
-
-
-                                           @error('email')
+                                             @error('email')
                                                <span class="invalid-feedback" role="alert">
                                                    <strong>{{ $message }}</strong>
                                                </span>
                                            @enderror
+                                           </div>
+
+                                           @else
+                                           <h4>You will Email Admin : <span class="text text-info" >{{ $admin->name }}   {{  $admin->email }}</span> </h4>
+
+                                           @endif
+
+
+
                                        </div>
-                                   </div>
+
 
                                    <div class="form-group">
                                        <label for="subject" class=" col-form-label text-md-end">{{ __('Subject') }}</label>

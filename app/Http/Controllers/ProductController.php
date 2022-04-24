@@ -228,13 +228,15 @@ class ProductController extends Controller
     public function requestDonation(Request $request)
     {
         # send email to request donation
-
-
         try {
-            //code...
-            // mail($request->email,$request->subject,$request->message);
-            Notification::send(Auth::user(),new RequestDonationNotification($request->all())) ;
-            Session::flash('success',"Request send.");
+            if (Auth::user()->is_admin ) {
+                $user = User::where('email', $request->email )->first();
+            } else {
+                $user = User::where('is_admin',1)->first();
+            }
+
+            Notification::send($user,new RequestDonationNotification($request->all())) ;
+            Session::flash('success',"Email send successfully to ". $user->name );
         } catch (\Throwable $th) {
 
             Session::flash('error',$th->getMessage());
